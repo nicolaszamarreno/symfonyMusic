@@ -5,13 +5,13 @@ namespace FrontBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class PlaylistController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/playlist", name="playlist_home")
      */
     public function indexAction()
     {
-        return $this->render('FrontBundle:Default:index.html.twig');
+        return $this->render('FrontBundle:Playlist:Playlist.html.twig');
     }
 }

@@ -26,6 +26,9 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
+            // Assetic
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+
             new AdminBundle\AdminBundle(),
             new FrontBundle\FrontBundle(),
         ];

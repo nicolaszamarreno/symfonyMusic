@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Symphonie | {% endblock %}</title>
+    {% block stylesheets %}
+        <style>
+            @font-face{
+                font-family : 'gothamBlack';
+                src : url('fonts/Gotham-Black.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamBlackItalic';
+                src : url('fonts/Gotham-BlackItalic.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamBold';
+                src : url('fonts/Gotham-Bold.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamBoldItalic';
+                src : url('fonts/Gotham-BoldItalic.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamBook';
+                src : url('fonts/Gotham-Book.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamBookItalic';
+                src : url('fonts/Gotham-BookItalic.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamLight';
+                src : url('fonts/Gotham-Light.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamLightItalic';
+                src : url('fonts/Gotham-LightItalic.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamMedium';
+                src : url('fonts/Gotham-Medium.otf') format('opentype');
+            }
+
+            @font-face{
+                font-family : 'gothamMediumItalic';
+                src : url('fonts/Gotham-MediumItalic.otf') format('opentype');
+            }
+        </style>
+        {% stylesheets '@FrontBundle/Resources/public/css/style.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

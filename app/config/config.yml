@@ -88,3 +88,15 @@ swiftmailer:
 sonata_admin:
     #title: Administrateur #à personnaliser
     title_logo: /bundles/framework/images/logo_symfony.png
+
+# Assetic Configuration
+assetic:
+    debug: "%kernel.debug%"
+    use_controller: "%kernel.debug%"
+    bundles: [ FrontBundle ]
+    filters:
+        cssrewrite: ~
+    assets:
+        Gotham-Book-otf:
+            inputs: '@FrontBundle/Resources/public/fonts/Gotham-Book.otf'
+            output: 'fonts/Gotham-Book.otf'

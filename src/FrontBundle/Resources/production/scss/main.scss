@@ -1,0 +1,19 @@
+/* helpers */ // -> $var, @mixin, @extend, .utility-classes
+@import 'helpers/variables';
+@import 'helpers/mixins';
+//@import 'helpers/functions';
+//@import 'helpers/utils';
+
+/* vendor */ // -> sass mediaquery
+
+
+/* base */  // -> reset(s) and basic rules
+@import 'base/reset';
+//@import 'base/typography';
+
+/* layout */ // -> structure and design
+@import 'layout/global';
+@import 'layout/grid';
+@import 'layout/navbar';
+
+/* components */ // -> pieces of code that are more reusable or common

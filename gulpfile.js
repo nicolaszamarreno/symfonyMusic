@@ -21,17 +21,27 @@ var rename = require('gulp-rename');
 var imagemin = require('gulp-imagemin');
 
 // Variables folders PROD
-var prodFolderSASS = 'web/prod/scss/main.scss';
-var prodFolderJS = 'src/*/Resources/public/js/**/*.js';
-var prodFolderPicture = 'web/prod/images/';
+var prodFolderSASS = 'src/FrontBundle/Resources/production/scss/main.scss';
+var prodFolderJS = 'src/FrontBundle/Resources/production/js/**/*.js';
+var prodFolderPicture = 'src/FrontBundle/Resources/production/images/';
 
 // Variables folders DIST
-var distFolderCSS = 'web/assets/css/'; 
-var distFolderJS = 'web/assets/js/';
-var distFolderPicture = 'web/assets/images/';
+var distFolderCSS = 'src/FrontBundle/Resources/public/css/';
+var distFolderJS = 'src/FrontBundle/Resources/public/js/';
+var distFolderPicture = 'src/FrontBundle/Resources/public/images/';
 // Tab Processors 
 var processors = [
-    autoprefixer({browsers: ['last 2 versions','> 2%','ie >= 9']}),
+    autoprefixer({browsers: [
+        '> 1%',
+        'last 2 versions',
+        'firefox >= 4',
+        'safari 7',
+        'safari 8',
+        'IE 8',
+        'IE 9',
+        'IE 10',
+        'IE 11'
+    ]}),
     mqpacker,
     pxtorem
 ];
@@ -82,7 +92,7 @@ gulp.task('compress-images', function(){
 gulp.task('production', ['sass'], function() {
     
     livereload.listen();
-    gulp.watch(prodFolderSASS, ['sass'], onChange.changed);
+    gulp.watch('src/FrontBundle/Resources/production/scss/**/*.scss', ['sass'], onChange.changed);
     gulp.watch(prodFolderJS, ['compress-js'], onChange.changed);
     gulp.watch(prodFolderPicture, ['compress-images'], onChange.changed);
 });
