@@ -1,15 +1,13 @@
 .player {
-  margin-top:40px;
   height:220px;
   display: flex;
-  
+
   &__hidden {
     overflow: hidden;
     display: block;
   }
 
   &__cover {
-    border-top:2px solid $color;
     width: 220px;
     height: 220px;
     position: relative;
@@ -80,6 +78,8 @@
   height: 2px;
   display: block;
   position: relative;
+  margin-top:40px;
+  z-index: 10;
 
   &__current {
     height: 2px;

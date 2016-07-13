@@ -79,6 +79,8 @@ function timeUpdate() {
     if (music.currentTime == duration) {
         $("#play").removeClass("icon-pause-button-outline");
         $("#play").addClass("icon-arrow");
+        playhead.style.marginLeft = "0px";
+        timelineCurrent.style.width = "0px";
     }
 }
 

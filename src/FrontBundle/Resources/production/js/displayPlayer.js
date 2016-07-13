@@ -23,6 +23,7 @@ function SoundcloudFind(track_url) {
 }
 
 function playerLaunch(url, objectMusic){
+    $(".header__userExperience__panel").empty();
     pButton.classList.remove("icon-arrow");
     pButton.classList.add("icon-pause-button-outline");
 
