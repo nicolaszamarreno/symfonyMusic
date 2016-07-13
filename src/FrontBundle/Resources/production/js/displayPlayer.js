@@ -11,16 +11,35 @@ function SoundcloudFind(track_url) {
          client_id: "c381048a8c48b7a419f2be16c079f8da"
      });
      SC.get("/resolve", { url: track_url }, function(sound) {
-     musicCurrent = sound; // Object of the music
-         
-     console.log('musicCurrent ' , musicCurrent);
+        musicCurrent = sound; // Object of the music
 
-     var url = sound.stream_url + '?client_id=' + "c381048a8c48b7a419f2be16c079f8da";
+        console.log('musicCurrent ' , musicCurrent);
 
-      $( ".header__userExperience__panel" ).append('<h1 class="song-artiste">' + sound.user.username + '</h1> <h2 class="song-title">' + sound.title + '</h2> <h3 class="song-genre">' + sound.genre + '</h3> <h3 class="song-tag">' + sound.tag_list + '</h3>');
-         
-      $("#player__music").attr("src", url);
+        var url = sound.stream_url + '?client_id=' + "c381048a8c48b7a419f2be16c079f8da";
 
+         // function permet de récupérer l'url et de lancer la musique après la recherche
+        playerLaunch(url, musicCurrent);
      });
+}
+
+function playerLaunch(url, objectMusic){
+    pButton.classList.remove("icon-arrow");
+    pButton.classList.add("icon-pause-button-outline");
+
+    // Animation title musique
+    $(".player__describe__playlist, .player__describe__title").animate({
+        "top" : "50px"
+    },{
+        queue : false,
+        duration : 500,
+        complete : function(){
+            $(".player__describe__title").text("").text(objectMusic.title);
+            $(".player__describe__playlist, .player__describe__title").animate({
+                "top" : "0px"
+            },500);
+            music.setAttribute("src", url);
+            music.play();
+        }
+    });
 }
 

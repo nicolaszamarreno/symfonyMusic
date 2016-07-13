@@ -2,6 +2,11 @@
   margin-top:40px;
   height:220px;
   display: flex;
+  
+  &__hidden {
+    overflow: hidden;
+    display: block;
+  }
 
   &__cover {
     border-top:2px solid $color;
@@ -57,7 +62,12 @@
     left: 5%;
     font-size:12px;
 
+    &__title {
+      position: relative;
+    }
+
     &__playlist {
+      position: relative;
       color:$color;
       padding-top:5px;
       display: block;
