@@ -21,6 +21,20 @@
   }
 }
 
+//Fluid pour projet Symphony
+.container__fluid {
+  width: 70%;
+  margin: auto;
+}
+
+.wrapper {
+  transition:all 1s ease-out;
+
+  &--menu {
+    padding-left: 220px;
+  }
+}
+
 
 // Fluid container
 //

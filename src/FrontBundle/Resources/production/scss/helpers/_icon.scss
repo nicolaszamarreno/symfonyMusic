@@ -13,6 +13,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-add:before {
+  content: "\e905";
+}
+.icon-playlist:before {
+  content: "\e906";
+}
 .icon-arrow:before {
   content: "\e900";
 }
@@ -28,3 +34,4 @@
 .icon-shut-down:before {
   content: "\e904";
 }
+
