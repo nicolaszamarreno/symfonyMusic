@@ -13,6 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-pause-button-outline:before {
+  content: "\e907";
+}
 .icon-add:before {
   content: "\e905";
 }

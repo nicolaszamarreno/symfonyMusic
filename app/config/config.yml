@@ -113,5 +113,5 @@ assetic:
                     inputs: '@FrontBundle/Resources/public/fonts/Gotham-Bold.otf'
                     output: 'fonts/Gotham-Bold.otf'
         icon-ttf:
-                            inputs: '@FrontBundle/Resources/public/fonts/icomoon.ttf'
-                            output: 'fonts/icomoon.ttf'
+                    inputs: '@FrontBundle/Resources/public/fonts/icomoon.ttf'
+                    output: 'fonts/icomoon.ttf'

@@ -2,95 +2,13 @@
 {% block title %}{{ parent() }} Vos playlists{% endblock %}
 {% block body %}
 
-    <header class="header">
-        <div class="header__logo">
-            <div class='toggle'>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <strong>S</strong>ymphonie
-        </div>
-
-        <a href="" class="header__addPlaylist">creer une playlist</a>
-
-        <ul class="header__userExperience">
-            <li class="header__userExperience__search">
-                <span class="icon-search"></span>
-                <input type="text" placeholder="Rechercher...">
-                <ul class="header__userExperience__panel"></ul>
-            </li>
-            <li class="header__userExperience__user">
-                <span class="header__userExperience__user__picture">
-                    {% image '@FrontBundle/Resources/public/images/portrait.jpeg' %}
-                        <img src="{{ asset_url }}" alt="Portrait" />
-                    {% endimage %}
-                </span>
-                <span class="header__userExperience__user__name">
-                    john <strong>DOE</strong>
-                </span>
-            </li>
-            <li class="header__userExperience__logout">
-                <button class="icon-shut-down"></button>
-            </li>
-        </ul>
-    </header>
-
-    <nav class="menu">
-        <ul class="menu__section">
-            <li>général</li>
-            <li><a href="">Accueil</a></li>
-            <li><a href="">Tendances</a></li>
-            <li><a href="">Actualités</a></li>
-        </ul>
-
-        <ul class="menu__section">
-            <li>Mon espace</li>
-            <li><a href="">Mes amis</a></li>
-            <li><a href="">Mes playlists favorites</a></li>
-            <li><a href="">Mes brouillons</a></li>
-        </ul>
-
-        <ul class="menu__section menu__section--playlist">
-            <li>Mes playlists</li>
-            <li><a href=""><span class="icon-playlist"></span> Rap US</a></li>
-            <li><a href=""><span class="icon-playlist"></span> Deep House</a></li>
-            <li><a href=""><span class="icon-playlist"></span> Electro</a></li>
-            <li><a href=""><span class="icon-playlist"></span> Rock</a></li>
-            <li><a href=""><span class="icon-playlist"></span> Divers</a></li>
-            <li><a href=""><span class="icon-add"></span> Nouvelle playlist</a></li>
-        </ul>
-    </nav>
-
-    <section class="wrapper">
-        <article class="playlist">
-            <div class="container__fluid">
-                <h1 class="title--playlist">
-                    <span>Mes playlists en ligne</span>
-                </h1>
-                <div>
-                    {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
-                        <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
-                            <h3 class="playlist__genre">
-                                Rap US
-                            </h3>
-                            <p class="playlist__describe">
-                                <span>23 titres</span>
-                                Disponible 5 jours
-                            </p>
-                        </div>
-                    {% endimage %}
-                </div>
-            </div>
-        </article>
-
-        <article class="playlist">
-            <div class="container__fluid">
-                <h1 class="title--playlist">
-                    <span>Mes playlists favorites</span>
-                </h1>
-                <div>
-                    {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+    <article class="playlist">
+        <div class="container__fluid">
+            <h1 class="title--playlist">
+                <span>Mes playlists en ligne</span>
+            </h1>
+            <div>
+                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
                     <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
                         <h3 class="playlist__genre">
                             Rap US
@@ -100,55 +18,52 @@
                             Disponible 5 jours
                         </p>
                     </div>
-                    {% endimage %}
-                </div>
-
-        </article>
-
-        <article class="playlist">
-            <div class="container__fluid">
-                <h1 class="title--playlist">
-                    <span>Mes brouillons</span>
-                </h1>
-                <div>
-                    {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
-                    <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
-                        <h3 class="playlist__genre">
-                            Rap US
-                        </h3>
-                        <p class="playlist__describe">
-                            <span>23 titres</span>
-                            Disponible 5 jours
-                        </p>
-                    </div>
-                    {% endimage %}
-                </div>
+                {% endimage %}
             </div>
-        </article>
-    </section>
-
-
-    <section class="player">
-        {% image '@FrontBundle/Resources/public/images/cover.jpg' %}
-        <div class="player__cover" style="background:url({{ asset_url }}); background-size:cover">
         </div>
-        {% endimage %}
+    </article>
 
-        <div class="player__audioplayer">
-            <audio id="player__music" preload="true" src=""></audio>
-            <div id="timeline">
-                <div id="timeline__current"></div>
-                <div id="playhead"></div>
+    <article class="playlist">
+        <div class="container__fluid">
+            <h1 class="title--playlist">
+                <span>Mes playlists favorites</span>
+            </h1>
+            <div>
+                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                    <h3 class="playlist__genre">
+                        Rap US
+                    </h3>
+                    <p class="playlist__describe">
+                        <span>23 titres</span>
+                        Disponible 5 jours
+                    </p>
+                </div>
+                {% endimage %}
             </div>
-            <div class="player__controll">
-                <button id="play" class="icon-arrow" class="play"></button>
-                <button id="next" class="icon-forward-button"></button>
-            </div>
-
-            <canvas id="analyser_render"></canvas>
         </div>
-    </section>
+    </article>
 
+    <article class="playlist">
+        <div class="container__fluid">
+            <h1 class="title--playlist">
+                <span>Mes brouillons</span>
+            </h1>
+            <div>
+                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                    <h3 class="playlist__genre">
+                        Rap US
+                    </h3>
+                    <p class="playlist__describe">
+                        <span>23 titres</span>
+                        Disponible 5 jours
+                    </p>
+                </div>
+                {% endimage %}
+            </div>
+        </div>
+    </article>
 
     <script src="http://connect.soundcloud.com/sdk.js"></script>
 {% endblock %}

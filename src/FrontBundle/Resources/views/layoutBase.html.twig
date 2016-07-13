@@ -66,7 +66,93 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body>
-{% block body %}{% endblock %}
+    <header class="header">
+        <div class="header__logo">
+            <div class='toggle'>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <strong>S</strong>ymphonie
+        </div>
+
+        <a href="" class="header__addPlaylist">creer une playlist</a>
+
+        <ul class="header__userExperience">
+            <li class="header__userExperience__search">
+                <span class="icon-search"></span>
+                <input type="text" placeholder="Rechercher...">
+                <ul class="header__userExperience__panel"></ul>
+            </li>
+            <li class="header__userExperience__user">
+                    <span class="header__userExperience__user__picture">
+                        {% image '@FrontBundle/Resources/public/images/portrait.jpeg' %}
+                        <img src="{{ asset_url }}" alt="Portrait" />
+                        {% endimage %}
+                    </span>
+                    <span class="header__userExperience__user__name">
+                        john <strong>DOE</strong>
+                    </span>
+            </li>
+            <li class="header__userExperience__logout">
+                <button class="icon-shut-down"></button>
+            </li>
+        </ul>
+    </header>
+
+    <nav class="menu">
+        <ul class="menu__section">
+            <li>général</li>
+            <li><a href="">Accueil</a></li>
+            <li><a href="">Tendances</a></li>
+            <li><a href="">Actualités</a></li>
+        </ul>
+
+        <ul class="menu__section">
+            <li>Mon espace</li>
+            <li><a href="">Mes amis</a></li>
+            <li><a href="">Mes playlists favorites</a></li>
+            <li><a href="">Mes brouillons</a></li>
+        </ul>
+
+        <ul class="menu__section menu__section--playlist">
+            <li>Mes playlists</li>
+            <li><a href=""><span class="icon-playlist"></span> Rap US</a></li>
+            <li><a href=""><span class="icon-playlist"></span> Deep House</a></li>
+            <li><a href=""><span class="icon-playlist"></span> Electro</a></li>
+            <li><a href=""><span class="icon-playlist"></span> Rock</a></li>
+            <li><a href=""><span class="icon-playlist"></span> Divers</a></li>
+            <li><a href=""><span class="icon-add"></span> Nouvelle playlist</a></li>
+        </ul>
+    </nav>
+    <section class="wrapper">
+        {% block body %}{% endblock %}
+    </section>
+    <section class="player">
+        {% image '@FrontBundle/Resources/public/images/cover.jpg' %}
+        <div class="player__cover" style="background:url({{ asset_url }}); background-size:cover">
+        </div>
+        {% endimage %}
+
+        <div class="player__audioplayer">
+            <audio id="player__music" preload="true" src=""></audio>
+            <div id="timeline">
+                <div id="timeline__current"></div>
+                <div id="playhead"></div>
+            </div>
+            <div class="player__controll">
+                <button id="prev" class="player__controll__prev icon-forward-button"></button>
+                <button id="play" class="player__controll__play icon-arrow" class="play"></button>
+                <button id="next" class="player__controll__next icon-forward-button"></button>
+            </div>
+            <div class="player__describe">
+                <h1 class="player__describe__title">Schoolboy Q ft Kanye West - That Part</h1>
+                <span class="player__describe__playlist">From the playlist <strong>RAP US</strong></span>
+            </div>
+
+            <canvas id="analyser_render"></canvas>
+        </div>
+    </section>
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 {% endblock %}

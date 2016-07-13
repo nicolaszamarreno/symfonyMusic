@@ -1,13 +1,16 @@
 var music = document.getElementById('player__music'); // id for audio element
-var duration; // Duration of audio clip
+var duration;
 var pButton = document.getElementById('play'); // play button
-
 var playhead = document.getElementById('playhead'); // playhead
-
 var timeline = document.getElementById('timeline'); // timeline
 var timelineCurrent = document.getElementById('timeline__current');
+
 // timeline width adjusted for playhead
 var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
+
+//POur génération du canvas
+music.crossOrigin = "anonymous";
+
 
 // timeupdate event listener
 music.addEventListener("timeupdate", timeUpdate, false);
@@ -74,26 +77,27 @@ function timeUpdate() {
     timelineCurrent.style.width = playPercent + "0px";
 
     if (music.currentTime == duration) {
-        pButton.className = "";
-        pButton.className = "play";
+        $("#play").removeClass("icon-pause-button-outline");
+        $("#play").addClass("icon-arrow");
     }
 }
 
 $("#play").click(function(){
     play();
 })
+
 function play() {
     // start music
     if (music.paused) {
         music.play();
         // remove play, add pause
-        pButton.className = "";
-        pButton.className = "pause";
+        $("#play").removeClass("icon-arrow");
+        $("#play").addClass("icon-pause-button-outline");
     } else { // pause music
         music.pause();
         // remove pause, add play
-        pButton.className = "";
-        pButton.className = "play";
+        $("#play").removeClass("icon-pause-button-outline");
+        $("#play").addClass("icon-arrow");
     }
 }
 
@@ -102,17 +106,8 @@ music.addEventListener("canplaythrough", function () {
     duration = music.duration;
 }, false);
 
-
-//Delete
-//arrete
-
 // Create a new instance of an audio object and adjust some of its properties
-var audio = new Audio();
-audio.src = '';
-audio.controls = true;
-audio.loop = true;
-audio.autoplay = true;
-audio.crossOrigin = "anonymous";
+
 // Establish all variables that your Analyser will use
 var canvas, ctx, source, context, analyser, fbc_array, bars, bar_x, bar_width, bar_height;
 // Initialize the MP3 player after the page loads all of its HTML into the window
@@ -123,7 +118,7 @@ function initMp3Player(){
     canvas = document.getElementById('analyser_render');
     ctx = canvas.getContext('2d');
     // Re-route audio playback into the processing graph of the AudioContext
-    source = context.createMediaElementSource(audio);
+    source = context.createMediaElementSource(music);
     source.connect(analyser);
     analyser.connect(context.destination);
     frameLooper();
