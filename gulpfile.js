@@ -93,7 +93,7 @@ gulp.task('production', ['sass'], function() {
     
     livereload.listen();
     gulp.watch('src/FrontBundle/Resources/production/scss/**/*.scss', ['sass'], onChange.changed);
-    gulp.watch(prodFolderJS, ['compress-js'], onChange.changed);
+    gulp.watch('src/FrontBundle/Resources/production/js/**/*.js', ['compress-js'], onChange.changed);
     gulp.watch(prodFolderPicture, ['compress-images'], onChange.changed);
 });
 

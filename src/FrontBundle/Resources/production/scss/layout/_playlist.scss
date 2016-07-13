@@ -1,0 +1,44 @@
+.playlist {
+  margin-top:52px;
+
+  &__label {
+    height:90px;
+    width:190px;
+    background-size:cover;
+    padding:15px;
+    position: relative;
+    border-radius:5px;
+
+    &:before {
+      content:"";
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      position: absolute;
+      background:rgba(0,0,0,0.8);
+    }
+  }
+
+  &__genre {
+    font-family:gothamMedium;
+    font-size:16px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+    position: relative;
+    z-index: 3;
+  }
+
+  &__describe {
+    color:$color;
+    font-family: gothamBookItalic;
+    font-size:10px;
+    position: relative;
+    z-index:3;
+
+    span {
+      display: block;
+      margin-bottom: 2px;
+    }
+  }
+}

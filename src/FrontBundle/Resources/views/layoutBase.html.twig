@@ -6,6 +6,10 @@
     {% block stylesheets %}
         <style>
             @font-face{
+                font-family : 'icon';
+                src : url('fonts/icomoon.ttf') format('truetype');
+            }
+            @font-face{
                 font-family : 'gothamBlack';
                 src : url('fonts/Gotham-Black.otf') format('opentype');
             }
@@ -63,6 +67,8 @@
 </head>
 <body>
 {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+{% endblock %}
 </body>
 </html>

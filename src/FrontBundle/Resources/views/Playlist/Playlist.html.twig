@@ -1,13 +1,112 @@
 {% extends "FrontBundle::layoutBase.html.twig" %}
-
+{% block title %}{{ parent() }} Vos playlists{% endblock %}
 {% block body %}
-    <div class="container">
-        <nav class="navbar">
+
+    <nav class="navbar">
+        <div class="container">
             <div class="navbar__logo">
                 <strong>S</strong>ymphonie
             </div>
+
             <a href="" class="navbar__playlist">creer une playlist</a>
-            <input type="text" class="navbar__search" placeholder="Rechercher">
-        </nav>
-    </div>
+
+            <ul class="navbar__userExperience">
+                <li class="navbar__userExperience__search">
+                    <span class="icon-search"></span>
+                    <input type="text" placeholder="Rechercher...">
+                    <ul class="navbar__userExperience__panel"></ul>
+                </li>
+                <li class="navbar__userExperience__user">
+                    <span class="navbar__userExperience__user__picture">
+                        {% image '@FrontBundle/Resources/public/images/portrait.jpeg' %}
+                            <img src="{{ asset_url }}" alt="Portrait" />
+                        {% endimage %}
+                    </span>
+                    <span class="navbar__userExperience__user__name">
+                        john <strong>DOE</strong>
+                    </span>
+                </li>
+                <li class="navbar__userExperience__logout">
+                    <button class="icon-shut-down"></button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="playlist">
+        <div class="container">
+            <h1 class="title--playlist">
+                <span>Mes playlists en ligne</span>
+            </h1>
+            <div class="row">
+                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                    <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                        <h3 class="playlist__genre">
+                            Rap US
+                        </h3>
+                        <p class="playlist__describe">
+                            <span>23 titres</span>
+                            Disponible 5 jours
+                        </p>
+                    </div>
+                {% endimage %}
+            </div>
+        </div>
+    </section>
+
+    <section class="playlist">
+        <div class="container">
+            <h1 class="title--playlist">
+                <span>Mes playlists favorites</span>
+            </h1>
+            <div class="row">
+                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                    <h3 class="playlist__genre">
+                        Rap US
+                    </h3>
+                    <p class="playlist__describe">
+                        <span>23 titres</span>
+                        Disponible 5 jours
+                    </p>
+                </div>
+                {% endimage %}
+            </div>
+        </div>
+    </section>
+
+    <section class="playlist">
+        <div class="container">
+            <h1 class="title--playlist">
+                <span>Mes brouillons</span>
+            </h1>
+            <div class="row">
+                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                    <h3 class="playlist__genre">
+                        Rap US
+                    </h3>
+                    <p class="playlist__describe">
+                        <span>23 titres</span>
+                        Disponible 5 jours
+                    </p>
+                </div>
+                {% endimage %}
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <audio id="player" controls="" autoplay="" preload="" autobuffer="" crossorigin="anonymous"></audio>
+    </section>
+
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@FrontBundle/Resources/public/js/*.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

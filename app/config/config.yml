@@ -100,3 +100,18 @@ assetic:
         Gotham-Book-otf:
             inputs: '@FrontBundle/Resources/public/fonts/Gotham-Book.otf'
             output: 'fonts/Gotham-Book.otf'
+        Gotham-BookItalic-otf:
+                    inputs: '@FrontBundle/Resources/public/fonts/Gotham-BookItalic.otf'
+                    output: 'fonts/Gotham-BookItalic.otf'
+        Gotham-Light-otf:
+                    inputs: '@FrontBundle/Resources/public/fonts/Gotham-Light.otf'
+                    output: 'fonts/Gotham-Light.otf'
+        Gotham-Medium-otf:
+                    inputs: '@FrontBundle/Resources/public/fonts/Gotham-Medium.otf'
+                    output: 'fonts/Gotham-Medium.otf'
+        Gotham-Bold-otf:
+                    inputs: '@FrontBundle/Resources/public/fonts/Gotham-Bold.otf'
+                    output: 'fonts/Gotham-Bold.otf'
+        icon-ttf:
+                            inputs: '@FrontBundle/Resources/public/fonts/icomoon.ttf'
+                            output: 'fonts/icomoon.ttf'
