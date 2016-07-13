@@ -1,0 +1,214 @@
+.header {
+  position: relative;
+
+  &__logo {
+    padding:20px 50px;
+    background:$gradient;
+    display: block;
+    cursor: pointer;
+    width:220px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: gothamLight;
+    font-size:16px;
+    height: 56px;
+    display:inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__addPlaylist {
+    text-transform: uppercase;
+    color:#FFFFFF;
+    text-decoration: none;
+    padding:9px 30px;
+    background:$color;
+    border-radius:50px;
+    font-size:11px;
+    letter-spacing: 1px;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    bottom:-30px;
+    transform: translate(-50%, -50%);
+
+    &:before {
+      content:"+";
+      font-size:11px;
+      padding-right:10px;
+    }
+  }
+
+  &__userExperience {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    height:56px;
+
+    &__search {
+      position: relative;
+
+      .icon-search {
+        color:#3e3e3e;
+        font-size:12px;
+      }
+
+      input {
+        background: $background;
+        border:none;
+        color:#FFFFFF;
+        font-family: gothamBookItalic;
+        width: 200px;
+
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+          color: #3e3e3e;
+          font-size:11px;
+        }
+        &::-moz-placeholder { /* Firefox 19+ */
+          color: #3e3e3e;
+          font-size:11px;
+        }
+        &:-ms-input-placeholder { /* IE 10+ */
+          color: #3e3e3e;
+          font-size:11px;
+        }
+        &:-moz-placeholder { /* Firefox 18- */
+          color: #3e3e3e;
+          font-size:11px;
+        }
+      }
+    }
+
+    &__panel {
+      color: white;
+      position: absolute;
+      left: 0;
+      padding: 6px 0;
+      width: 90%;
+      display: none;
+      background: $background;
+      font-size:8px;
+      font-family: gothamLight;
+
+      li {
+        cursor: pointer;
+        display:flex;
+        align-items: center;
+        width: 100%;
+        color:#bdbdbd;
+        padding:5px 0;
+        font-weight: 300;
+        font-size: 12px;
+        &:hover{
+          background-color: #585858;
+        }
+
+        .panel__avatar {
+          width: 15%;
+
+          img {
+            width: 100%;
+          }
+        }
+
+        .panel__title {
+          width: 85%;
+          padding-left:15px;
+          font-family: gothamLight;
+
+          strong {
+            display: block;
+            overflow: hidden;
+            height: 10px;
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+
+    &__user {
+      display: flex;
+      flex-direction: row;
+      align-items:center;
+
+      &__picture {
+        overflow: hidden;
+        border-radius:50%;
+        width: 33px;
+        height: 33px;
+        border:solid $color 2px;
+        text-align: center;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      &__name {
+        text-transform: uppercase;
+        padding-left: 8px;
+        font-size:9px;
+      }
+    }
+
+    &__logout {
+      padding:0 20px;
+
+      button {
+        background:none;
+        color:#FFFFFF;
+        border:none;
+        font-size:15px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.toggle {
+  display: block;
+  position: relative;
+  top:-1px;
+  margin-right: 10px;
+
+  span {
+    display: block;
+    background: #FFF;
+    width: 20px;
+    height: 2px;
+    border-radius: 3px;
+    -webkit-transition: .25s margin .25s, .25s transform;
+    transition: .25s margin .25s, .25s transform;
+
+    &:first-child {
+      margin-bottom: 3px;
+    }
+
+    &:nth-child(3) {
+      margin-top: 3px;
+    }
+  }
+
+  &--active {
+    span {
+      -webkit-transition: .25s margin, .25s transform .25s;
+      transition: .25s margin, .25s transform .25s;
+
+      &:nth-child(1) {
+        margin-bottom: -2px;
+      }
+
+      &:nth-child(1), &:nth-child(2){
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(3){
+        margin-top: -3px;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+      }
+    }
+  }
+}

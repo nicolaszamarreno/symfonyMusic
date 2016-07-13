@@ -1,15 +1,15 @@
 /**
  * Search on keyup the word in the input
  */
-$(".navbar__userExperience__search input").keyup(function() {
+$(".header__userExperience__search input").keyup(function() {
   var term = $(this).val();
 
   if(term.length > 0) {
-    $(".navbar__userExperience__panel").show();
+    $(".header__userExperience__panel").show();
     search(term, 6);
   } else {
-    $(".navbar__userExperience__panel").empty();
-    $(".navbar__userExperience__panel").hide();
+    $(".header__userExperience__panel").empty();
+    $(".header__userExperience__panel").hide();
   }
 });
 
@@ -31,7 +31,7 @@ function search (termSearch, nbreResult) {
     for (var i = 0; i < tracks.length; i++) {
        result += '<li data-link="' + tracks[i].permalink_url + '"><div class="panel__avatar"><img src="' + tracks[i].user.avatar_url + '"></div><div class="panel__title"><strong>' + tracks[i].title + '</strong>' + tracks[i].user.username + '</div></li>';
     }
-    $(".navbar__userExperience__panel").empty().html(result);
+    $(".header__userExperience__panel").empty().html(result);
   });
 }
 
