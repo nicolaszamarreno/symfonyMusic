@@ -128,9 +128,27 @@
     </section>
 
 
-    <section>
-        <audio id="player" controls="" autoplay="" preload="" autobuffer="" crossorigin="anonymous"></audio>
+    <section class="player">
+        {% image '@FrontBundle/Resources/public/images/cover.jpg' %}
+        <div class="player__cover" style="background:url({{ asset_url }}); background-size:cover">
+        </div>
+        {% endimage %}
+
+        <div class="player__audioplayer">
+            <audio id="player__music" preload="true" src=""></audio>
+            <div id="timeline">
+                <div id="timeline__current"></div>
+                <div id="playhead"></div>
+            </div>
+            <div class="player__controll">
+                <button id="play" class="icon-arrow" class="play"></button>
+                <button id="next" class="icon-forward-button"></button>
+            </div>
+
+            <canvas id="analyser_render"></canvas>
+        </div>
     </section>
+
 
     <script src="http://connect.soundcloud.com/sdk.js"></script>
 {% endblock %}

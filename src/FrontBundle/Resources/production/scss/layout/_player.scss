@@ -1,0 +1,58 @@
+.player {
+  margin-top:20px;
+  height:200px;
+  display: flex;
+
+  &__cover {
+    border-top:2px solid $color;
+    width: 220px;
+  }
+
+  &__audioplayer {
+    width: 100%;
+  }
+}
+
+#pButton{
+  height:60px;
+  width: 60px;
+  border: none;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  float:left;
+  outline:none;
+}
+
+#timeline{
+  width: 100%;
+  height: 2px;
+  display: block;
+  position: relative;
+
+  &__current {
+    height: 2px;
+    display: block;
+    background: $color;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+#playhead{
+  width: 8px;
+  height: 8px;
+  position: relative;
+  top: -3px;
+  border-radius: 50%;
+  background: $color;
+
+}
+
+canvas {
+  width:100%;
+  height:150px;
+  background:transparent;
+
+}
