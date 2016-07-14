@@ -1,3 +1,98 @@
-.listPlaylist {
+$heightColumn : 45px;
 
+.listPlaylist {
+  margin-top:52px;
+
+  &__container {
+    display: flex;
+
+    &__left {
+      width: 30%;
+    }
+
+    &__right {
+      width: 70%;
+    }
+  }
+
+  &__swag {
+    &__title {
+      color:$color2;
+      font-size: 50px;
+    }
+  }
+
+  &__table {
+    width: 100%;
+
+    tr {
+      cursor: pointer;
+      transition:all 1s;
+
+      &:hover {
+        background:$color2;
+      }
+
+      &:hover td:first-child {
+        opacity: 1;
+      }
+
+      &:first-child {
+        border-bottom: 1px solid $color-menu;
+      }
+
+      th {
+        color:$color-menu;
+        text-transform: uppercase;
+        font-family:gothamLight;
+        font-size:11px;
+        height: $heightColumn;
+        vertical-align: middle;
+        text-align: center;
+
+        &:nth-child(3) {
+          text-align: left;
+        }
+
+        &:nth-child(4) {
+          text-align: left;
+        }
+      }
+
+      td {
+        height: $heightColumn;
+        vertical-align: middle;
+        font-size: 13px;
+        text-align: center;
+
+        &:first-child {
+          transition: 1s all;
+          font-size:20px;
+          width: 5%;
+          opacity: 0.3;
+        }
+
+        &:nth-child(2) {
+          width: 4%;
+        }
+
+        &:nth-child(3) {
+          text-align: left;
+          font-family: gothamBook;
+          width: 40%;
+          padding-right:30px;
+        }
+
+        &:nth-child(4) {
+          text-align: left;
+          font-family: gothamLight;
+          width: 30%;
+        }
+
+        &:last-child {
+          font-size:15px;
+        }
+      }
+    }
+  }
 }

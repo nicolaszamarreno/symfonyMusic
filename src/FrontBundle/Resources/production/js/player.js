@@ -176,6 +176,7 @@ function initMp3Player(){
     context = new AudioContext(); // AudioContext object instance
     analyser = context.createAnalyser(); // AnalyserNode method
     canvas = document.getElementById('analyser_render');
+    canvas.setAttribute("width", document.querySelector(".player__audioplayer").offsetWidth);
     ctx = canvas.getContext('2d');
     // Re-route audio playback into the processing graph of the AudioContext
     source = context.createMediaElementSource(music);
@@ -223,8 +224,9 @@ var playlist = ["https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit
 ]; // Variable tab for twig
 
 
-$(".listPlaylist li").click(function(){
-    var indexOfMusic = $(this).index();
+$(".listPlaylist__table tr").click(function(){
+    var indexOfMusic = $(this).index() - 1;
+    console.log(indexOfMusic);
     clickPlaylist(indexOfMusic);
 });
 

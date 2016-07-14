@@ -14,4 +14,12 @@ class PlaylistController extends Controller
     {
         return $this->render('FrontBundle:Playlist:Playlist.html.twig');
     }
+
+    /**
+     * @Route("/list", name="playlist_listing")
+     */
+    public function listAction()
+    {
+        return $this->render('FrontBundle:Playlist:PlaylistList.html.twig');
+    }
 }

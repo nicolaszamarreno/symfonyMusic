@@ -1,0 +1,107 @@
+{% extends "FrontBundle::layoutBase.html.twig" %}
+{% block title %}{{ parent() }} Name Playlist{% endblock %}
+{% block body %}
+
+    <div class="listPlaylist">
+        <div class="container__fluid">
+            <h1 class="title--playlist">
+                <span>Mes playlists Favorites <span class="chevron">></span> Poposey</span>
+            </h1>
+            <div class="listPlaylist__container">
+                <div class="listPlaylist__container__left">
+                    <div class="listPlaylist__swag">
+                        <h3 class="listPlaylist__swag__title">
+                            POPOSEY
+                        </h3>
+                        <h4 class="listPlaylist__swag__author">
+                            Par MACLY
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="listPlaylist__container__right">
+                    <table class="listPlaylist__table">
+                        <tr>
+                            <th>
+                                &nbsp;
+                            </th>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                musique
+                            </th>
+                            <th>
+                                Artiste
+                            </th>
+                            <th>
+                                lecture
+                            </th>
+                            <th>
+                                durée
+                            </th>
+                            <th>
+                                plus
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="icon-arrow"></i>
+                            </td>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                Be ReaL Ft. Dej Loaf (Explicit)
+                            </td>
+                            <td>
+                                Aérotique
+                            </td>
+                            <td>
+                                3
+                            </td>
+                            <td>
+                                4:30
+                            </td>
+                            <td>
+                                <i class="icon-edit"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="icon-arrow"></i>
+                            </td>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                Meek Mill- Heaven Or Hell Ft Jadakiss, Guordan Banks (DreamChasers 3)
+                            </td>
+                            <td>
+                                Aérotique
+                            </td>
+                            <td>
+                                3
+                            </td>
+                            <td>
+                                4:30
+                            </td>
+                            <td>
+                                <i class="icon-edit"></i>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://connect.soundcloud.com/sdk.js"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@FrontBundle/Resources/public/js/*.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

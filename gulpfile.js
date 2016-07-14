@@ -57,6 +57,7 @@ gulp.task('sass', function(){
         .pipe(sourcemaps.write())
         .pipe(rename('style.css'))
         .pipe(gulp.dest(distFolderCSS))
+        .pipe(livereload());
 });
 
 // Compress JS
