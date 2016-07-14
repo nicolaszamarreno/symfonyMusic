@@ -41,10 +41,7 @@ music.addEventListener("canplaythrough", function () {
     duration = music.duration;
 }, false);
 
-// Count the duration music and put into layout
-$("#player__music").on("timeupdate", function(){
-        onTrackedVideoFrame(this.currentTime, this.duration);
-});
+music.addEventListener("timeupdate", timeUpdate, false);
 
 
 /******************
@@ -54,7 +51,7 @@ $("#player__music").on("timeupdate", function(){
  ******************
  ******************
  ******************/
-function onTrackedVideoFrame(currentTime, duration){
+function countTimeSong(currentTime, duration){
     var musicCurrentTime = Math.floor(currentTime);
     var musicDuration = Math.floor(duration);
     var musicRest = musicDuration - musicCurrentTime;
@@ -142,11 +139,7 @@ function timeUpdate() {
         timelineCurrent.style.width = "0px";
 
         if(modePlaylist){
-
-            //var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
-            //var indexOfMusic = numberIndexPlaylist + 1;
-            //clickPlaylist(indexOfMusic);
-            //nextPlaylist(); // if playlist mode, player pass in the next song
+            nextPlaylist(); // if playlist mode, player pass in the next song
         }
     }
 }
@@ -230,6 +223,7 @@ var playlist = ["https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit
 
 $(".listPlaylist__table tr").click(function(){
     var indexOfMusic = $(this).index() - 1;
+    console.log("click :", $(this).index());
     clickPlaylist(indexOfMusic);
 });
 
@@ -245,6 +239,7 @@ function clickPlaylist (indexList){
     modePlaylist = true; // Give Mode;
     numberIndexPlaylist = indexList; // Give the new index
     SoundcloudFind(playlist[indexList]);
+    songSelectPlaylist(indexList, "click");
 }
 
 function nextPlaylist(){
@@ -255,8 +250,10 @@ function nextPlaylist(){
 
         if(indexOfMusic <= totalPlaylist){
             clickPlaylist(indexOfMusic);
+            songSelectPlaylist(indexOfMusic, "next");
         }
         else if(indexOfMusic > totalPlaylist) {
+            songSelectPlaylist(indexOfMusic, "next");
             var indexOfMusic = 0;
             numberIndexPlaylist = 0; // On remet la playlist à Zéro
             clickPlaylist(indexOfMusic);
@@ -272,18 +269,39 @@ function previousPlaylist(){
 
         if(indexOfMusic >= 0){
             clickPlaylist(indexOfMusic);
+            songSelectPlaylist(indexOfMusic, "previous");
         }
         else if(indexOfMusic < 0) {
             var indexOfMusic = totalPlaylist;
             numberIndexPlaylist = totalPlaylist; // On remet la playlist à Zéro
             clickPlaylist(indexOfMusic);
+            songSelectPlaylist(indexOfMusic, "previous");
         }
     }
 }
 
-function songSelectPlaylist(index){
-    $(".listPlaylist__table tr").removeClass("song__active");
-    $(".listPlaylist__table tr").eq(index + 1).addClass("song__active");
+function songSelectPlaylist(index, direction){
+    if(direction == "next") {
+        $(".listPlaylist__table tr").removeClass("song__active");
+        $(".listPlaylist__table tr").eq(index + 1).addClass("song__active");
+        $(".listPlaylist__table tr").eq(index).children().eq(0).children().removeClass("icon-pause-button-outline").addClass('icon-arrow');
+        $(".listPlaylist__table tr").eq(index + 1).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+    }
+    else if(direction == "previous") {
+        console.log("direction ", index);
+        $(".listPlaylist__table tr").removeClass("song__active");
+        $(".listPlaylist__table tr").eq(index - 1).addClass("song__active");
+        $(".listPlaylist__table tr").eq(index).children().eq(0).children().removeClass("icon-pause-button-outline").addClass('icon-arrow');
+        $(".listPlaylist__table tr").eq(index - 1).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+    }
+
+    else if(direction == "click") {
+        console.log("bonjour");
+        $(".listPlaylist__table tr").removeClass("song__active");
+        $(".listPlaylist__table tr").eq(index + 1).addClass("song__active");
+        $(".listPlaylist__table tr td i").removeClass("icon-pause-button-outline").addClass("icon-arrow");
+        $(".listPlaylist__table tr").eq(index).children().eq(0).children().addClass('icon-pause-button-outline');
+    }
 }
 
 
