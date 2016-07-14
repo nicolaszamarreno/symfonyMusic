@@ -20,6 +20,7 @@ $(".header__userExperience__search input").keyup(function() {
  **/
 $("body").on("click", ".header__userExperience__panel li", function(){
     SoundcloudFind($(this).data("link"));
+    modePlaylist = false;
 });
 
 /**

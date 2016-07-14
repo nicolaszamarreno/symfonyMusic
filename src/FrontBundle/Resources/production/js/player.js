@@ -1,4 +1,5 @@
 var duration;
+var modePlaylist; // Check it's a search or playlist
 var music = document.getElementById('player__music'); // id for audio element
 var pButton = document.getElementById('play'); // play button
 var playhead = document.getElementById('playhead'); // playhead
@@ -139,6 +140,10 @@ function timeUpdate() {
         $("#play").addClass("icon-arrow");
         playhead.style.marginLeft = "0px";
         timelineCurrent.style.width = "0px";
+
+        if(modePlaylist){
+            nextPlaylist(); // if playlist mode, player pass in the next song
+        }
     }
 }
 
@@ -224,23 +229,20 @@ $(".listPlaylist li").click(function(){
 });
 
 $(".player__controll__prev").click(function(){
-    if(typeof playlist !== 'undefined'){
-
-        var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
-        var indexOfMusic = numberIndexPlaylist - 1;
-
-        if(indexOfMusic >= 0){
-            clickPlaylist(indexOfMusic);
-        }
-        else if(indexOfMusic < 0) {
-            var indexOfMusic = totalPlaylist;
-            numberIndexPlaylist = totalPlaylist; // On remet la playlist à Zéro
-            clickPlaylist(indexOfMusic);
-        }
-    }
+    previousPlaylist();
 });
 
 $(".player__controll__next").click(function(){
+    nextPlaylist();
+});
+
+function clickPlaylist (indexList){
+    modePlaylist = true; // Give Mode;
+    numberIndexPlaylist = indexList; // Give the new index
+    SoundcloudFind(playlist[indexList]);
+}
+
+function nextPlaylist(){
     if(typeof playlist !== 'undefined'){
 
         var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
@@ -255,11 +257,23 @@ $(".player__controll__next").click(function(){
             clickPlaylist(indexOfMusic);
         }
     }
-});
+}
 
-function clickPlaylist (indexList){
-    numberIndexPlaylist = indexList; // Give the new index
-    SoundcloudFind(playlist[indexList]);
+function previousPlaylist(){
+    if(typeof playlist !== 'undefined'){
+
+        var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
+        var indexOfMusic = numberIndexPlaylist - 1;
+
+        if(indexOfMusic >= 0){
+            clickPlaylist(indexOfMusic);
+        }
+        else if(indexOfMusic < 0) {
+            var indexOfMusic = totalPlaylist;
+            numberIndexPlaylist = totalPlaylist; // On remet la playlist à Zéro
+            clickPlaylist(indexOfMusic);
+        }
+    }
 }
 
 
