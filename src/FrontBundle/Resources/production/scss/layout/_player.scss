@@ -18,6 +18,7 @@
     position: relative;
     flex:1;
     overflow: hidden;
+    background:$background;
   }
 
   &__controll {
@@ -26,7 +27,7 @@
     transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
-    top:50px;
+    top:200px;
 
     &__prev, &__play, &__next {
       border:none;

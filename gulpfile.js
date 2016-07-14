@@ -15,6 +15,9 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 // Servers
 var livereload = require('gulp-livereload');
+var browserSync = require("browser-sync").create();
+var reload = browserSync.reload;
+
 // Others
 var rename = require('gulp-rename');
 // Compress images
@@ -57,7 +60,7 @@ gulp.task('sass', function(){
   .pipe(sourcemaps.write())
   .pipe(rename('style.css'))
   .pipe(gulp.dest(distFolderCSS))
-  .pipe(livereload());
+  .pipe(browserSync.stream())
 });
 
 // Compress JS
@@ -89,18 +92,34 @@ gulp.task('compress-images', function(){
     .pipe(gulp.dest(distFolderPicture))
 });
 
-gulp.task('production', ['sass'], function() {
-    
-    livereload.listen();
-    gulp.watch('src/FrontBundle/Resources/production/scss/**/*.scss', ['sass'], onChange.changed);
-    gulp.watch('src/FrontBundle/Resources/production/js/**/*.js', ['compress-js'], onChange.changed);
-    gulp.watch(prodFolderPicture, ['compress-images'], onChange.changed);
-});
-
 // Action pour Distribution
 gulp.task('distribution', ['compress-js','compress-css', 'compress-images'], function() {
   console.log('JavaScript Minify | CSS Minify');
 });
+
+// Action pour Production
+gulp.task('productionLocal', ['sass', 'compress-js', 'browserSync'], function() {
+    gulp.watch('src/FrontBundle/Resources/production/scss/**/*.scss', ['sass']);
+    gulp.watch('src/FrontBundle/Resources/production/js/**/*.js', ['compress-js']);
+    gulp.watch('src/FrontBundle/Resources/views/**/*.twig').on('change', browserSync.reload);
+    gulp.watch('src/FrontBundle/Resources/production/js/**/*.js').on('change', browserSync.reload);
+});
+
+gulp.task('browserSync', function(){
+    return browserSync.init({
+       proxy:'http://localhost',
+       startPath:"web/app_dev.php",
+       ghostMode: {
+         scroll: true,
+             links: true,
+             forms: true
+       },
+        watchTask:true
+    });
+});
+
+
+
 
 
 

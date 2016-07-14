@@ -132,8 +132,13 @@ function frameLooper(){
 
     fbc_array = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(fbc_array);
-    ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-    ctx.fillStyle = '#65c5ba'; // Color of the bars
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // Add Gradient Elements
+    var gradient = ctx.createRadialGradient(0,0,50,0,150,300);
+    gradient.addColorStop(0,"#65c6bb");
+    gradient.addColorStop(0.9,"#4c43c4");
+    ctx.fillStyle = gradient;
+    //ctx.fillStyle = '#65c5ba'; // Color of the bars
     bars = 1600;
     for (var i = 0; i < bars; i++) {
         bar_x = i * 10;
@@ -145,7 +150,22 @@ function frameLooper(){
 }
 
 
+// Count the duration music and put into layout
+$("#player__music").on(
+    "timeupdate",
+    function(event){
+        onTrackedVideoFrame(this.currentTime, this.duration);
+});
 
+function onTrackedVideoFrame(currentTime, duration){
+    var musicCurrentTime = Math.floor(currentTime);
+    var musicDuration = Math.floor(duration);
+    var musicRest = musicDuration - musicCurrentTime;
+    var musicRestMinute = musicRest / 60;
+
+    var musicDuration = musicRestMinute.toString().slice(-4, -2) + ":" + musicRestMinute.toString().slice(-2);
+    console.log(musicDuration);
+}
 
 
 
