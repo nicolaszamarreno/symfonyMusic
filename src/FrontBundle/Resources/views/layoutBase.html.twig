@@ -128,35 +128,38 @@
     <section class="wrapper">
         {% block body %}{% endblock %}
     </section>
-    <audio id="player__music" preload="true" src=""></audio>
-    <div id="timeline">
-        <div id="timeline__current"></div>
-        <div id="playhead"></div>
-    </div>
-    <section class="player">
-        {% image '@FrontBundle/Resources/public/images/cover.jpg' %}
-        <div class="player__cover" style="background:url({{ asset_url }}); background-size:cover">
-        </div>
-        {% endimage %}
 
-        <div class="player__audioplayer">
-            <div class="player__controll">
-                <button id="prev" class="player__controll__prev icon-forward-button"></button>
-                <button id="play" class="player__controll__play icon-arrow"></button>
-                <button id="next" class="player__controll__next icon-forward-button"></button>
-            </div>
-            <div class="player__describe">
-                <span class="player__hidden">
-                    <h1 class="player__describe__title">Schoolboy Q ft Kanye West - That Part</h1>
-                </span>
-                <span class="player__hidden">
-                    <span class="player__describe__playlist">From the playlist <strong>RAP US</strong></span>
-                </span>
-            </div>
-
-            <canvas id="analyser_render"></canvas>
+    <footer class="footer">
+        <audio id="player__music" preload="true" src=""></audio>
+        <div id="timeline">
+            <div id="timeline__current"></div>
+            <div id="playhead"></div>
         </div>
-    </section>
+        <section class="player">
+            {% image '@FrontBundle/Resources/public/images/cover.jpg' %}
+            <div class="player__cover" style="background:url({{ asset_url }}); background-size:cover">
+            </div>
+            {% endimage %}
+
+            <div class="player__audioplayer">
+                <div class="player__controll">
+                    <button id="prev" class="player__controll__prev icon-forward-button"></button>
+                    <button id="play" class="player__controll__play icon-arrow"></button>
+                    <button id="next" class="player__controll__next icon-forward-button"></button>
+                </div>
+                <div class="player__describe">
+                    <span class="player__hidden">
+                        <h1 class="player__describe__title">Schoolboy Q ft Kanye West - That Part</h1>
+                    </span>
+                    <span class="player__hidden">
+                        <span class="player__describe__playlist">From the playlist <strong>RAP US</strong></span>
+                    </span>
+                </div>
+
+                <canvas id="analyser_render" width="3000px" height="150px"></canvas>
+            </div>
+        </section>
+    </footer>
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 {% endblock %}

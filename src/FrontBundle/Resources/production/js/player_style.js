@@ -134,9 +134,9 @@ function frameLooper(){
     analyser.getByteFrequencyData(fbc_array);
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
     ctx.fillStyle = '#65c5ba'; // Color of the bars
-    bars = 100;
+    bars = 1600;
     for (var i = 0; i < bars; i++) {
-        bar_x = i * 3;
+        bar_x = i * 10;
         bar_width = 2;
         bar_height = -(fbc_array[i] / 2);
         //  fillRect( x, y, width, height ) // Explanation of the parameters below
