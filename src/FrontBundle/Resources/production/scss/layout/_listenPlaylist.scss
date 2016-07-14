@@ -29,8 +29,12 @@ $heightColumn : 45px;
       cursor: pointer;
       transition:all 1s;
 
-      &:hover {
+      &.song__active {
         background:$color2;
+      }
+
+      &:hover {
+        background:#161616;
       }
 
       &:hover td:first-child {

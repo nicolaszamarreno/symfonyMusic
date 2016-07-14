@@ -16,6 +16,10 @@
 /web/bundles/
 /web/fonts/
 /web/css/
+/web/images/
+/web/js/
+/web/css/
+/web/uploads/
 /app/cache/*
 /app/logs/*
 /app/config/parameters.yml

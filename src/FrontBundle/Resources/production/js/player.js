@@ -44,7 +44,6 @@ music.addEventListener("canplaythrough", function () {
 // Count the duration music and put into layout
 $("#player__music").on("timeupdate", function(){
         onTrackedVideoFrame(this.currentTime, this.duration);
-        timeUpdate();
 });
 
 
@@ -136,13 +135,18 @@ function timeUpdate() {
     timelineCurrent.style.width = playPercent + "0px";
 
     if (music.currentTime == duration) {
+        console.log(music.currentTime);
         $("#play").removeClass("icon-pause-button-outline");
         $("#play").addClass("icon-arrow");
         playhead.style.marginLeft = "0px";
         timelineCurrent.style.width = "0px";
 
         if(modePlaylist){
-            nextPlaylist(); // if playlist mode, player pass in the next song
+
+            //var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
+            //var indexOfMusic = numberIndexPlaylist + 1;
+            //clickPlaylist(indexOfMusic);
+            //nextPlaylist(); // if playlist mode, player pass in the next song
         }
     }
 }
@@ -195,14 +199,14 @@ function frameLooper(){
     // Add Gradient Elements
     var gradient = ctx.createRadialGradient(0,0,50,0,150,300);
     gradient.addColorStop(0,"#65c6bb");
-    gradient.addColorStop(0.9,"#4c43c4");
+    gradient.addColorStop(0.5,"#4c43c4");
     ctx.fillStyle = gradient;
     //ctx.fillStyle = '#65c5ba'; // Color of the bars
     bars = 1600;
     for (var i = 0; i < bars; i++) {
         bar_x = i * 10;
         bar_width = 2;
-        bar_height = -(fbc_array[i] / 2);
+        bar_height = -(fbc_array[i] / 2);               
         //  fillRect( x, y, width, height ) // Explanation of the parameters below
         ctx.fillRect(bar_x, canvas.height, bar_width, bar_height);
     }
@@ -226,7 +230,6 @@ var playlist = ["https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit
 
 $(".listPlaylist__table tr").click(function(){
     var indexOfMusic = $(this).index() - 1;
-    console.log(indexOfMusic);
     clickPlaylist(indexOfMusic);
 });
 
@@ -250,7 +253,7 @@ function nextPlaylist(){
         var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
         var indexOfMusic = numberIndexPlaylist + 1;
 
-        if(indexOfMusic < totalPlaylist || indexOfMusic == totalPlaylist){
+        if(indexOfMusic <= totalPlaylist){
             clickPlaylist(indexOfMusic);
         }
         else if(indexOfMusic > totalPlaylist) {
@@ -276,6 +279,11 @@ function previousPlaylist(){
             clickPlaylist(indexOfMusic);
         }
     }
+}
+
+function songSelectPlaylist(index){
+    $(".listPlaylist__table tr").removeClass("song__active");
+    $(".listPlaylist__table tr").eq(index + 1).addClass("song__active");
 }
 
 
