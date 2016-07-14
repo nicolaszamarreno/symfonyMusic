@@ -32,6 +32,7 @@ var prodFolderPicture = 'src/FrontBundle/Resources/production/images/';
 var distFolderCSS = 'src/FrontBundle/Resources/public/css/';
 var distFolderJS = 'src/FrontBundle/Resources/public/js/';
 var distFolderPicture = 'src/FrontBundle/Resources/public/images/';
+var basePath = 'src/FrontBundle/Resources';
 // Tab Processors 
 var processors = [
     autoprefixer({browsers: [
@@ -60,7 +61,6 @@ gulp.task('sass', function(){
   .pipe(sourcemaps.write())
   .pipe(rename('style.css'))
   .pipe(gulp.dest(distFolderCSS))
-  .pipe(browserSync.stream())
 });
 
 // Compress JS
@@ -82,10 +82,6 @@ gulp.task('compress-css', function() {
     .pipe(gulp.dest(distFolderCSS));
 });
 
-var onChange = function (event) {
-	  livereload.changed();
-};
-
 gulp.task('compress-images', function(){
   return gulp.src(prodFolderPicture)
     .pipe(imagemin())
@@ -101,12 +97,15 @@ gulp.task('distribution', ['compress-js','compress-css', 'compress-images'], fun
 gulp.task('productionLocal', ['sass', 'compress-js', 'browserSync'], function() {
     gulp.watch('src/FrontBundle/Resources/production/scss/**/*.scss', ['sass']);
     gulp.watch('src/FrontBundle/Resources/production/js/**/*.js', ['compress-js']);
+    gulp.watch('src/FrontBundle/Resources/production/scss/**/*.scss').on('change', browserSync.reload);
     gulp.watch('src/FrontBundle/Resources/views/**/*.twig').on('change', browserSync.reload);
     gulp.watch('src/FrontBundle/Resources/production/js/**/*.js').on('change', browserSync.reload);
 });
 
 gulp.task('browserSync', function(){
-    return browserSync.init({
+    return browserSync.init([
+            basePath + 'public/css/style.css',
+        ],{
        proxy:'http://localhost',
        startPath:"web/app_dev.php",
        ghostMode: {
