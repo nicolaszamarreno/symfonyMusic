@@ -202,8 +202,6 @@ function frameLooper(){
     }
 }
 
-var numberIndexPlaylist; // Index for play playlist
-var playlist = ["https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit"]; // Variable tab for twig
 /******************
  ******************
  ******************
@@ -211,15 +209,56 @@ var playlist = ["https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit
  ******************
  ******************
  ******************/
+
+var numberIndexPlaylist; // Index for play playlist
+var playlist = ["https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit",
+    "https://soundcloud.com/hotnewexclusive/meek-mill-heaven-or-hell-ft",
+    "https://soundcloud.com/detoto/detoto-the-buckeye-party-mix",
+    "https://soundcloud.com/itspraddy/ed-sheeran-photograph-acoustic-version"
+]; // Variable tab for twig
+
+
 $(".listPlaylist li").click(function(){
     var indexOfMusic = $(this).index();
-    console.log(indexOfMusic);
     clickPlaylist(indexOfMusic);
-})
+});
+
+$(".player__controll__prev").click(function(){
+    if(typeof playlist !== 'undefined'){
+
+        var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
+        var indexOfMusic = numberIndexPlaylist - 1;
+
+        if(indexOfMusic >= 0){
+            clickPlaylist(indexOfMusic);
+        }
+        else if(indexOfMusic < 0) {
+            var indexOfMusic = totalPlaylist;
+            numberIndexPlaylist = totalPlaylist; // On remet la playlist à Zéro
+            clickPlaylist(indexOfMusic);
+        }
+    }
+});
+
+$(".player__controll__next").click(function(){
+    if(typeof playlist !== 'undefined'){
+
+        var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
+        var indexOfMusic = numberIndexPlaylist + 1;
+
+        if(indexOfMusic < totalPlaylist || indexOfMusic == totalPlaylist){
+            clickPlaylist(indexOfMusic);
+        }
+        else if(indexOfMusic > totalPlaylist) {
+            var indexOfMusic = 0;
+            numberIndexPlaylist = 0; // On remet la playlist à Zéro
+            clickPlaylist(indexOfMusic);
+        }
+    }
+});
 
 function clickPlaylist (indexList){
-    numberIndexPlaylist = indexList;
-    console.log(numberIndexPlaylist);
+    numberIndexPlaylist = indexList; // Give the new index
     SoundcloudFind(playlist[indexList]);
 }
 
