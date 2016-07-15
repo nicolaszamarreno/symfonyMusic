@@ -304,6 +304,10 @@ function songSelectPlaylist(index, direction){
     }
 }
 
+$("body").click(function(){
+    $(".footer").slideToggle();
+
+})
 
 
 
