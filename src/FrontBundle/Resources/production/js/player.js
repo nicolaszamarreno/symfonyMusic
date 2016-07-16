@@ -1,6 +1,6 @@
 var duration;
 var modePlaylist; // Check it's a search or playlist
-var onLaunch;
+var onLaunch = true; // First launch musique, i show the player
 var music = document.getElementById('player__music'); // id for audio element
 var pButton = document.getElementById('play'); // play button
 var playhead = document.getElementById('playhead'); // playhead
@@ -52,7 +52,7 @@ music.addEventListener("timeupdate", timeUpdate, false);
  ******************
  ******************
  ******************/
-function countTimeSong(){
+function countTimeSong(){ // Calcul Time of Song
     var audioCurrentTime = music.currentTime;
     var minutes = "0" + Math.floor(audioCurrentTime / 60);
     var seconds = "0" + Math.floor(audioCurrentTime % 60);
@@ -131,6 +131,7 @@ function timeUpdate() {
         timelineCurrent.style.width = "0px";
 
         if(modePlaylist){
+            countDay(indexSongCurrent); // On enleve une lecture pour aujourd'hui
             nextPlaylist(indexSongCurrent); // if playlist mode, player pass in the next song
         }
     }
@@ -215,10 +216,9 @@ var indexSongCurrent;
 $(".listPlaylist__listing tr").click(function(){
     modePlaylist = true; // Give Mode;
     indexSongCurrent = $(this).index();
-    console.log("click index song currant", indexSongCurrent);
 
     if(canPlay(indexSongCurrent)) {
-        var url = $(this).data("label");
+        var url = $(this).attr("data-label");
         SoundcloudFind(url);
         songSelectPlaylist(indexSongCurrent);
     }
@@ -239,8 +239,7 @@ function nextPlaylist(indexCurrent){
     if(modePlaylist == true){
         var  index = indexCurrent + 1;
         if(canPlay(index) && index <= totalSongPlaylist){
-            var url = $(".listPlaylist__listing tr ").eq(index).data("label");
-            console.log(url);
+            var url = $(".listPlaylist__listing tr ").eq(index).attr("data-label");
             indexSongCurrent = index;
             SoundcloudFind(url);
             songSelectPlaylist(index);
@@ -263,7 +262,7 @@ function previousPlaylist(indexCurrent){
     if(modePlaylist == true){
         var  index = indexCurrent - 1;
         if(canPlay(index) && index >= 0){
-            var url = $(".listPlaylist__listing tr ").eq(index).data("label");
+            var url = $(".listPlaylist__listing tr ").eq(index).attr("data-label");
             indexSongCurrent = index;
             SoundcloudFind(url);
             songSelectPlaylist(index);
@@ -290,11 +289,33 @@ function songSelectPlaylist(indexCurrent){
 }
 
 function canPlay(indexCurrent){
-    if($(".listPlaylist__listing tr").eq(indexCurrent).data("play") == true ) {
+    if($(".listPlaylist__listing tr").eq(indexCurrent).attr("data-play") == "true" ) {
         return true;
     }
     else{
         return false;
+    }
+}
+
+$(".listPlaylist__listing tr, #play").click(function(){
+    if(onLaunch){
+        $(".footer").animate({
+           "opacity" : 1
+        }, 1500);
+        onLaunch = false;
+    }
+});
+
+function countDay(indexCurrent) {
+    var dataCountCurrent = $(".listPlaylist__listing tr").eq(indexCurrent).attr("data-time");
+    var newCount = dataCountCurrent - 1;
+
+    if(newCount == 0) {
+        $(".listPlaylist__listing tr").eq(indexCurrent).attr("data-play", "false");
+        $(".listPlaylist__listing tr").eq(indexCurrent).attr("data-time", newCount);
+        $(".listPlaylist__listing tr").eq(indexCurrent).removeAttr("data-label");
+    }else {
+        $(".listPlaylist__listing tr").eq(indexCurrent).attr("data-time", newCount);
     }
 }
 

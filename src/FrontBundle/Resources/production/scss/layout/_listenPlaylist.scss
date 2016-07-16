@@ -36,14 +36,14 @@ $heightColumn : 36px;
       }
 
       &:hover {
-        background:#161616;
+        background:rgba(22, 22, 22, 0.7);
         opacity: 1;
       }
 
       td {
         height: $heightColumn;
         vertical-align: middle;
-        font-size: 13px;
+        font-size: 12px;
         text-align: center;
         font-family:gothamMedium;
 
