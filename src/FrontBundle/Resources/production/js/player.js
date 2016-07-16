@@ -142,11 +142,16 @@ function timeUpdate() {
 function play() {
     // start music
     if (music.paused) {
+        if(modePlaylist) {
+            $(".listPlaylist__listing tr ").eq(indexSongCurrent).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+        }
+
         music.play();
         // remove play, add pause
         $("#play").removeClass("icon-arrow");
         $("#play").addClass("icon-pause-button-outline");
     } else { // pause music
+        $(".listPlaylist__listing tr ").eq(indexSongCurrent).children().eq(0).children().removeClass("icon-pause-button-outline").addClass('icon-arrow');
         music.pause();
         // remove pause, add play
         $("#play").removeClass("icon-pause-button-outline");
@@ -278,8 +283,10 @@ function previousPlaylist(indexCurrent){
 }
 
 function songSelectPlaylist(indexCurrent){
-        $(".listPlaylist__listing tr ").eq(indexCurrent).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+        $(".listPlaylist__listing tr ").removeClass("song__active");
+        $(".listPlaylist__listing tr i").removeClass("icon-pause-button-outline").addClass("icon-arrow");
         $(".listPlaylist__listing tr ").eq(indexCurrent).addClass("song__active");
+        $(".listPlaylist__listing tr ").eq(indexCurrent).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
 }
 
 function canPlay(indexCurrent){
