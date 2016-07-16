@@ -17,8 +17,52 @@ $heightColumn : 36px;
 
   &__swag {
     &__title {
-      color:$color2;
-      font-size: 50px;
+      color:white;
+      font-family:gothamMedium;
+      font-size: 25px;
+      letter-spacing: 2px;
+    }
+
+    &__author {
+      font-family: gothamBook;
+      letter-spacing: 2px;
+      font-size:12px;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    &__check {
+      color:$color-menu;
+      font-size: 11px;
+      margin-top: 20px;
+      font-family: gothamBookItalic;
+
+      li {
+        padding-bottom:3px;
+
+        strong {
+          font-family:gothamMediumItalic;
+        }
+      }
+    }
+
+    &__like {
+      margin-top:25px;
+      margin-bottom:10px;
+      font-size:20px;
+      font-family:gothamLight;
+      letter-spacing: 2px;
+
+      i {
+        color:$color3;
+      }
+
+      p {
+        padding-top:5px;
+        letter-spacing: 1px;
+        padding-bottom: 10px;
+        font-size:11px;
+      }
     }
   }
 

@@ -59,8 +59,6 @@ function SoundcloudFind(track_url) {
   SC.get("/resolve", { url: track_url }, function(sound) {
     musicCurrent = sound; // Object of the music
 
-    console.log('musicCurrent ' , musicCurrent);
-
     var url = sound.stream_url + '?client_id=' + "c381048a8c48b7a419f2be16c079f8da";
 
     // function permet de récupérer l'url et de lancer la musique après la recherche

@@ -8,3 +8,23 @@
   display: inline-flex;
   box-shadow: -1px 1px 69px -2px $color2;
 }
+
+.button__return {
+  color:white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size:12px;
+  letter-spacing: 2px;
+  margin-bottom:30px;
+  display: inline-block;
+
+  i {
+    padding-right:15px;
+  }
+}
+
+.button__share {
+  @extend .button;
+  padding:3px 15px;
+  font-size:13px;
+}

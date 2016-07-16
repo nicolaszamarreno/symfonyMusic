@@ -13,6 +13,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-icon_back:before {
+  content: "\e90b";
+}
 .icon-add:before {
   content: "\e900";
 }
@@ -46,4 +49,3 @@
 .icon-shut-down:before {
   content: "\e90a";
 }
-

@@ -1,33 +1,31 @@
-.title {
-  &--playlist {
-    position: relative;
-    font-family: gothamMedium;
-    margin-bottom: 35px;
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  font-family: gothamMedium;
+  margin-bottom: 35px;
 
-    span {
-      display: inline-block;
-      font-size:11.5px;
-      color:$color;
-      letter-spacing: 1.5px;
-      background:$background;
+  &__title {
+    padding-right:20px;
+    font-size:12px;
+    color:$color;
+    letter-spacing: 1.5px;
+    padding-right:20px;
+    line-height: 0;
+
+    i {
       position: relative;
-      z-index: 4;
-      padding-right:20px;
-    }
-
-    &:before {
-      content:"";
-      display: block;
-      position: absolute;
-      top:10px;
-      height: 1px;
-      opacity: 0.1;
-      width: 100%;
-      background:$color;
+      top:4px;
+      font-size:18px;
+      font-weight:bold;
     }
   }
-}
 
-.breadcrumbs {
-
+  &__filet {
+    height: 1px;
+    flex:1;
+    position: relative;
+    top:5px;
+    background:$color;
+    opacity: 0.3;
+  }
 }
