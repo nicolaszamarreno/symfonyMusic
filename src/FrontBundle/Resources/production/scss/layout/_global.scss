@@ -1,5 +1,4 @@
 body {
-  background-color : $background;
   color:#FFFFFF;
   font-family: 'gothamBook', Arial;
 }
@@ -9,6 +8,5 @@ strong {
 }
 
 .playlistBackground {
-  background:url("../images/bg_playlist.jpg") no-repeat center $background;
-
+  background:url("../images/bg_playlist.jpg") no-repeat top center $background;
 }

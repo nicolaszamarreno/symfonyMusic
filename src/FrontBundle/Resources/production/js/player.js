@@ -296,17 +296,16 @@ function songSelectPlaylist(index, direction){
     }
 
     else if(direction == "click") {
-        console.log("bonjour");
+        console.log(index);
         $(".listPlaylist__table tr").removeClass("song__active");
         $(".listPlaylist__table tr").eq(index + 1).addClass("song__active");
         $(".listPlaylist__table tr td i").removeClass("icon-pause-button-outline").addClass("icon-arrow");
-        $(".listPlaylist__table tr").eq(index).children().eq(0).children().addClass('icon-pause-button-outline');
+        $(".listPlaylist__table tr").eq(index + 1).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
     }
 }
 
 $("body").click(function(){
     $(".footer").slideToggle();
-
 })
 
 

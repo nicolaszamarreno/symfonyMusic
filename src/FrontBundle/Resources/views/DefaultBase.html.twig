@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Symphonie{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets '@FrontBundle/Resources/public/css/style.css' filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+    <header class="slider">
+        <h1 class="slider__logo">
+            SYMPHONIE
+        </h1>
+        <h2 class="slider__baseline">
+            TU VOIS SPOTIFY ? BAH TOUT PAREIL.
+        </h2>
+        <p class="slider__underBaseline">
+
+        </p>
+        a.
+    </header>
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+{% endblock %}
+</body>
+</html>

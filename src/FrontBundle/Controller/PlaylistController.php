@@ -22,4 +22,12 @@ class PlaylistController extends Controller
     {
         return $this->render('FrontBundle:Playlist:PlaylistList.html.twig');
     }
+
+    /**
+     * @Route("/home", name="home")
+     */
+    public function homeAction()
+    {
+        return $this->render('FrontBundle:Home:LandingPage.html.twig');
+    }
 }

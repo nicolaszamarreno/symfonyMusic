@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Symphonie{% endblock %}</title>
+    {% block stylesheets %}
+        {% stylesheets '@FrontBundle/Resources/public/css/*' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<header class="slider">
+    <h1 class="slider__logo">
+        <strong>S</strong>YMPHONIE
+    </h1>
+    <h2 class="slider__baseline">
+        TU VOIS SPOTIFY ? <strong>BAH TOUT PAREIL</strong>
+    </h2>
+    <p class="slider__underBaseline">
+        But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great
+    </p>
+    <a href="" class="slider__button">
+        S’INSCRIRE
+    </a>
+</header>
+
+<section class="wow fadeInUp home">
+    <h3 class="home__title">
+        TU VOIS TOUJOURS SPOTIFY ?
+        <strong>BAH C’EST TOUJOURS PAREIL</strong>
+    </h3>
+    <p class="home__text">
+        But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great
+    </p>
+</section>
+
+<section class="homeSubscribe">
+    <h2 class="homeSubscribe__title">
+        DÉCOUVRE <strong>SYMPHONIE !</strong>
+    </h2>
+    <a href="" class="homeSubscribe__button">
+        S'inscrire
+    </a>
+    {% image '@FrontBundle/Resources/public/images/discover_symphonie.png' %}
+    <img src="{{ asset_url }}" alt="Découvre Symphonie" width="100%"/>
+    {% endimage %}
+</section>
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+{% endblock %}
+</body>
+</html>

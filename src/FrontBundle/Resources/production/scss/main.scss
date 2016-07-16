@@ -10,7 +10,7 @@
 
 /* base */  // -> reset(s) and basic rules
 @import 'base/reset';
-//@import 'base/typography';
+@import 'base/typography';
 
 /* layout */ // -> structure and design
 @import 'layout/global';
@@ -20,7 +20,9 @@
 @import 'layout/playlist'; // With Favorite playlist
 @import 'layout/player';
 @import 'layout/listenPlaylist'; // Listing of song into playlist
+@import 'layout/home';
 
 /* components */ // -> pieces of code that are more reusable or common
 @import 'components/title';
 @import 'components/animation';
+@import 'components/button';

@@ -18,20 +18,13 @@
   }
 
   &__addPlaylist {
-    text-transform: uppercase;
-    color:#FFFFFF;
-    text-decoration: none;
+    @extend .button;
     padding:9px 30px;
-    background:$color2;
-    border-radius:50px;
     font-size:11px;
-    letter-spacing: 1px;
-    display: inline-block;
     position: absolute;
     left: 50%;
     bottom:-30px;
     transform: translate(-50%, -50%);
-    box-shadow: -1px 1px 69px -2px $color2;
 
     &:before {
       content:"+";
