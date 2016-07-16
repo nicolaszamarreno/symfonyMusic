@@ -30,4 +30,12 @@ class PlaylistController extends Controller
     {
         return $this->render('FrontBundle:Home:LandingPage.html.twig');
     }
+
+    /**
+     * @Route("/connexion", name="connexion")
+     */
+    public function connexionAction()
+    {
+        return $this->render('FrontBundle:Connexion:ConnexionPage.html.twig');
+    }
 }

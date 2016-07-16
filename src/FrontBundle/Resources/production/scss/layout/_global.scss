@@ -11,3 +11,8 @@ strong {
   background:url("../images/bg_playlist.jpg") no-repeat top center $background;
   background-size:cover;
 }
+
+.connexionBackground {
+  background:url("../images/background-home.png") no-repeat top right $background;
+  height: 100%;
+}
