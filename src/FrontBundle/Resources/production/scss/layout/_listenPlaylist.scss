@@ -1,4 +1,4 @@
-$heightColumn : 45px;
+$heightColumn : 36px;
 
 .listPlaylist {
   margin-top:52px;
@@ -22,45 +22,22 @@ $heightColumn : 45px;
     }
   }
 
-  &__table {
+  &__listing {
     width: 100%;
 
     tr {
       cursor: pointer;
       transition:all 1s;
+      opacity: 0.5;
 
       &.song__active {
-        background:$color2;
+        background:$colorSelectMusique;
+        opacity:1 !important;
       }
 
       &:hover {
         background:#161616;
-      }
-
-      &:hover td:first-child {
         opacity: 1;
-      }
-
-      &:first-child {
-        border-bottom: 1px solid $color-menu;
-      }
-
-      th {
-        color:$color-menu;
-        text-transform: uppercase;
-        font-family:gothamLight;
-        font-size:11px;
-        height: $heightColumn;
-        vertical-align: middle;
-        text-align: center;
-
-        &:nth-child(3) {
-          text-align: left;
-        }
-
-        &:nth-child(4) {
-          text-align: left;
-        }
       }
 
       td {
@@ -68,33 +45,28 @@ $heightColumn : 45px;
         vertical-align: middle;
         font-size: 13px;
         text-align: center;
+        font-family:gothamMedium;
 
         &:first-child {
           transition: 1s all;
           font-size:20px;
-          width: 5%;
-          opacity: 0.3;
+          width: 4%;
+          text-align: center;
         }
 
         &:nth-child(2) {
           width: 4%;
+          text-align: center;
         }
 
         &:nth-child(3) {
-          text-align: left;
-          font-family: gothamBook;
-          width: 40%;
+          width: 80%;
           line-height: 18px;
-          padding-right:30px;
-        }
-
-        &:nth-child(4) {
           text-align: left;
-          font-family: gothamLight;
-          width: 30%;
         }
 
         &:last-child {
+          width: 12%;
           font-size:15px;
         }
       }

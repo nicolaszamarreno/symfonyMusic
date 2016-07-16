@@ -1,5 +1,6 @@
 var duration;
 var modePlaylist; // Check it's a search or playlist
+var onLaunch;
 var music = document.getElementById('player__music'); // id for audio element
 var pButton = document.getElementById('play'); // play button
 var playhead = document.getElementById('playhead'); // playhead
@@ -51,22 +52,13 @@ music.addEventListener("timeupdate", timeUpdate, false);
  ******************
  ******************
  ******************/
-function countTimeSong(currentTime, duration){
-    var musicCurrentTime = Math.floor(currentTime);
-    var musicDuration = Math.floor(duration);
-    var musicRest = musicDuration - musicCurrentTime;
+function countTimeSong(){
+    var audioCurrentTime = music.currentTime;
+    var minutes = "0" + Math.floor(audioCurrentTime / 60);
+    var seconds = "0" + Math.floor(audioCurrentTime % 60);
+    var chrono = minutes.substr(-2) + ":" + seconds.substr(-2);
 
-    var musicMinute = musicRest.toString().slice(-4, -2);
-    var musicSecond = musicRest.toString().slice(-2);
-
-    if(musicMinute == ""){
-        musicDuration =  "0:" + musicSecond;
-    }
-    else {
-        musicDuration = musicMinute  + ":" + musicSecond;
-    }
-
-    $('.player__duration__time').text(musicDuration);
+    $('.player__duration__time').text(chrono);
 }
 
 /**
@@ -127,19 +119,19 @@ function moveplayhead(e) {
  * Synchronizes playhead position with current point in audio
  */
 function timeUpdate() {
+    countTimeSong(); // Calcul time of chanson
     var playPercent = timelineWidth * (music.currentTime / duration);
     playhead.style.marginLeft = playPercent + "px";
     timelineCurrent.style.width = playPercent + "0px";
 
     if (music.currentTime == duration) {
-        console.log(music.currentTime);
         $("#play").removeClass("icon-pause-button-outline");
         $("#play").addClass("icon-arrow");
         playhead.style.marginLeft = "0px";
         timelineCurrent.style.width = "0px";
 
         if(modePlaylist){
-            nextPlaylist(); // if playlist mode, player pass in the next song
+            nextPlaylist(indexSongCurrent); // if playlist mode, player pass in the next song
         }
     }
 }
@@ -212,101 +204,92 @@ function frameLooper(){
  ******************
  ******************
  ******************/
+var totalSongPlaylist = $(".listPlaylist__listing tr").length;
+var indexSongCurrent;
 
-var numberIndexPlaylist; // Index for play playlist
-var playlist = ["https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit",
-    "https://soundcloud.com/hotnewexclusive/meek-mill-heaven-or-hell-ft",
-    "https://soundcloud.com/detoto/detoto-the-buckeye-party-mix",
-    "https://soundcloud.com/itspraddy/ed-sheeran-photograph-acoustic-version"
-]; // Variable tab for twig
+$(".listPlaylist__listing tr").click(function(){
+    modePlaylist = true; // Give Mode;
+    indexSongCurrent = $(this).index();
+    console.log("click index song currant", indexSongCurrent);
 
-
-$(".listPlaylist__table tr").click(function(){
-    var indexOfMusic = $(this).index() - 1;
-    console.log("click :", $(this).index());
-    clickPlaylist(indexOfMusic);
+    if(canPlay(indexSongCurrent)) {
+        var url = $(this).data("label");
+        SoundcloudFind(url);
+        songSelectPlaylist(indexSongCurrent);
+    }
+    else {
+        nextPlaylist(indexSongCurrent);
+    }
 });
 
 $(".player__controll__prev").click(function(){
-    previousPlaylist();
+    previousPlaylist(indexSongCurrent);
 });
 
 $(".player__controll__next").click(function(){
-    nextPlaylist();
+    nextPlaylist(indexSongCurrent);
 });
 
-function clickPlaylist (indexList){
-    modePlaylist = true; // Give Mode;
-    numberIndexPlaylist = indexList; // Give the new index
-    SoundcloudFind(playlist[indexList]);
-    songSelectPlaylist(indexList, "click");
-}
-
-function nextPlaylist(){
-    if(typeof playlist !== 'undefined'){
-
-        var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
-        var indexOfMusic = numberIndexPlaylist + 1;
-
-        if(indexOfMusic <= totalPlaylist){
-            clickPlaylist(indexOfMusic);
-            songSelectPlaylist(indexOfMusic, "next");
+function nextPlaylist(indexCurrent){
+    if(modePlaylist == true){
+        var  index = indexCurrent + 1;
+        if(canPlay(index) && index <= totalSongPlaylist){
+            var url = $(".listPlaylist__listing tr ").eq(index).data("label");
+            console.log(url);
+            indexSongCurrent = index;
+            SoundcloudFind(url);
+            songSelectPlaylist(index);
         }
-        else if(indexOfMusic > totalPlaylist) {
-            songSelectPlaylist(indexOfMusic, "next");
-            var indexOfMusic = 0;
-            numberIndexPlaylist = 0; // On remet la playlist à Zéro
-            clickPlaylist(indexOfMusic);
+        else if (index == totalSongPlaylist){
+            indexSongCurrent = -1;
+            nextPlaylist(indexSongCurrent);
+        }
+        else {
+            indexSongCurrent = index;
+            nextPlaylist(indexSongCurrent);
         }
     }
-}
-
-function previousPlaylist(){
-    if(typeof playlist !== 'undefined'){
-
-        var totalPlaylist = playlist.length - 1; // On regarde le nombre total de la playlist
-        var indexOfMusic = numberIndexPlaylist - 1;
-
-        if(indexOfMusic >= 0){
-            clickPlaylist(indexOfMusic);
-            songSelectPlaylist(indexOfMusic, "previous");
-        }
-        else if(indexOfMusic < 0) {
-            var indexOfMusic = totalPlaylist;
-            numberIndexPlaylist = totalPlaylist; // On remet la playlist à Zéro
-            clickPlaylist(indexOfMusic);
-            songSelectPlaylist(indexOfMusic, "previous");
-        }
+    else {
+        // Add Class qui fasse vibrer le play
     }
 }
 
-function songSelectPlaylist(index, direction){
-    if(direction == "next") {
-        $(".listPlaylist__table tr").removeClass("song__active");
-        $(".listPlaylist__table tr").eq(index + 1).addClass("song__active");
-        $(".listPlaylist__table tr").eq(index).children().eq(0).children().removeClass("icon-pause-button-outline").addClass('icon-arrow');
-        $(".listPlaylist__table tr").eq(index + 1).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+function previousPlaylist(indexCurrent){
+    if(modePlaylist == true){
+        var  index = indexCurrent - 1;
+        if(canPlay(index) && index >= 0){
+            var url = $(".listPlaylist__listing tr ").eq(index).data("label");
+            indexSongCurrent = index;
+            SoundcloudFind(url);
+            songSelectPlaylist(index);
+        }
+        else if (index < 0){
+            indexSongCurrent = totalSongPlaylist;
+            previousPlaylist(indexSongCurrent);
+        }
+        else {
+            indexSongCurrent = index;
+            previousPlaylist(indexSongCurrent);
+        }
     }
-    else if(direction == "previous") {
-        console.log("direction ", index);
-        $(".listPlaylist__table tr").removeClass("song__active");
-        $(".listPlaylist__table tr").eq(index - 1).addClass("song__active");
-        $(".listPlaylist__table tr").eq(index).children().eq(0).children().removeClass("icon-pause-button-outline").addClass('icon-arrow');
-        $(".listPlaylist__table tr").eq(index - 1).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
-    }
-
-    else if(direction == "click") {
-        console.log(index);
-        $(".listPlaylist__table tr").removeClass("song__active");
-        $(".listPlaylist__table tr").eq(index + 1).addClass("song__active");
-        $(".listPlaylist__table tr td i").removeClass("icon-pause-button-outline").addClass("icon-arrow");
-        $(".listPlaylist__table tr").eq(index + 1).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+    else {
+        // Add Class qui fasse vibrer le play
     }
 }
 
-$("body").click(function(){
-    $(".footer").slideToggle();
-})
+function songSelectPlaylist(indexCurrent){
+        $(".listPlaylist__listing tr ").eq(indexCurrent).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+        $(".listPlaylist__listing tr ").eq(indexCurrent).addClass("song__active");
+}
+
+function canPlay(indexCurrent){
+    if($(".listPlaylist__listing tr").eq(indexCurrent).data("play") == true ) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 
 
