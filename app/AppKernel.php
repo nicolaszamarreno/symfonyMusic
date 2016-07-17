@@ -15,9 +15,12 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new AppBundle\AppBundle(),
-            new UserBundle\UserBundle(),
+
+
+
+            // Bundle pour la gestion des users
             new FOS\UserBundle\FOSUserBundle(),
+
 
             // Sonata
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
@@ -26,11 +29,13 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
-            // Assetic
+            // Assetic pour la gestion des resources dans les Bundles
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
             new AdminBundle\AdminBundle(),
             new FrontBundle\FrontBundle(),
+            new AppBundle\AppBundle(),
+            new UserBundle\UserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

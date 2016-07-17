@@ -20,7 +20,6 @@
 /web/js/
 /web/css/
 /web/uploads/
-/web/Resources/
 /app/cache/*
 /app/logs/*
 /app/config/parameters.yml

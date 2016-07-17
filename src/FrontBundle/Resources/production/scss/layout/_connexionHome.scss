@@ -14,3 +14,79 @@
     text-align: center;
   }
 }
+
+.form {
+  &__other, label {
+    color:#909090;
+    font-size:9px;
+    font-family: gothamMedium;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 30px;
+    letter-spacing: 1px;
+  }
+
+  input[type=text], input[type=password], input[type=email] {
+    background:none;
+    border:none;
+    border-bottom:1px solid #474748;
+    display: block;
+    color:#3e3e3e;
+    font-family:gothamBold;
+    padding-bottom:10px;
+    padding-top:10px;
+    width: 100%;
+  }
+
+  input[type=submit] {
+    @extend .button;
+    margin-top:30px;
+    margin-bottom:10px;
+    border:none;
+    height: 30px;
+    width: 230px;
+    text-align: center;
+    justify-content: center;
+    letter-spacing: 4px;
+  }
+
+  &__bar {
+    display: flex;
+    align-items: top;
+    justify-content: top;
+    margin-top: 70px;
+    margin-bottom: 150px;
+
+    &__status {
+      font-family: gothamMedium;
+      text-transform: uppercase;
+      text-align: center;
+      font-size:11px;
+      width: 50%;
+      color:#909090;
+      text-decoration: none;
+
+      &--active {
+        color:#FFFFFF;
+
+        &:after {
+          content:"";
+          height: 2px;
+          width: 50px;
+          background-color:$color;
+          display: block;
+          margin:auto;
+          margin-top: 6px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $background inset !important;
+  color:#3e3e3e;
+}

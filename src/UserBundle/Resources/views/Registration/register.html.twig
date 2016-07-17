@@ -1,0 +1,25 @@
+{% extends "UserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="container">
+    <div class="layout__middle">
+        <div class="form__bar">
+            <a href="{{ path('fos_user_registration_register') }}" class="form__bar__status form__bar__status--active">
+                s'enregistrer
+            </a>
+            <a href="" class="form__bar__status">
+                connexion
+            </a>
+        </div>
+
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class':
+            'fos_user_registration_register form'}}) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}
+

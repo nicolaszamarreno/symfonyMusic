@@ -14,5 +14,5 @@ strong {
 
 .connexionBackground {
   background:url("../images/background-home.png") no-repeat top right $background;
-  height: 100%;
+  background-size:contain;
 }
