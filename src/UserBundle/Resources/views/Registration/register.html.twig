@@ -18,22 +18,22 @@
             'fos_user_registration_register form'}}) }}
         {{ form_start(form) }}
 
-        <label for="password">{{ 'registration.firstname'|trans }}</label>
+        <label for="fos_user_registration_form_firstname">{{ 'registration.firstname'|trans }}</label>
         {{ form_widget(form.firstname) }}
 
-        <label for="password">{{ 'registration.lastname'|trans }}</label>
+        <label for="fos_user_registration_form_lastname">{{ 'registration.lastname'|trans }}</label>
         {{ form_widget(form.lastname) }}
 
-        <label for="password">{{ 'registration.username'|trans }}</label>
+        <label for="fos_user_registration_form_username">{{ 'registration.username'|trans }}</label>
         {{ form_widget(form.username) }}
 
-        <label for="password">{{ 'registration.emailregister'|trans }}</label>
+        <label for="fos_user_registration_form_email">{{ 'registration.emailregister'|trans }}</label>
         {{ form_widget(form.email) }}
 
-        <label for="password">{{ 'registration.password'|trans }}</label>
+        <label for="fos_user_registration_form_plainPassword_first">{{ 'registration.password'|trans }}</label>
         {{ form_widget(form.plainPassword.first) }}
 
-        <label for="password">{{ 'registration.passwordrepeat'|trans }}</label>
+        <label for="fos_user_registration_form_plainPassword_second">{{ 'registration.passwordrepeat'|trans }}</label>
         {{ form_widget(form.plainPassword.second) }}
 
         <input type="submit" value="{{ 'registration.submit'|trans }}" />

@@ -1,5 +1,43 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "UserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
-{% endblock fos_user_content %}
+    <div class="container__fluid">
+        <h1 class="breadcrumbs">
+            <div class="breadcrumbs__title">
+                Mon Profil
+            </div>
+            <div class="breadcrumbs__filet"></div>
+        </h1>
+
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit
+            form layout__row' } }) }}
+            {{ form_start(form) }}
+
+            <div class="layout__col2">
+                <label for="fos_user_registration_form_firstname">{{ 'registration.firstname'|trans }}</label>
+                {{ form_widget(form.firstname) }}
+
+                <label for="fos_user_registration_form_lastname">{{ 'registration.lastname'|trans }}</label>
+                {{ form_widget(form.lastname) }}
+
+                <label for="fos_user_registration_form_username">{{ 'registration.username'|trans }}</label>
+                {{ form_widget(form.username) }}
+            </div>
+
+            <div class="layout__col2">
+                <label for="fos_user_registration_form_email">{{ 'registration.emailregister'|trans }}</label>
+                {{ form_widget(form.email) }}
+
+                <label for="fos_user_registration_form_email">{{ 'registration.emailregister'|trans }}</label>
+                {{ form_widget(form.current_password) }}
+
+                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+            </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
+
+

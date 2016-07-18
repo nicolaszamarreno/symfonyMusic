@@ -40,6 +40,17 @@
   width: 45%;
 }
 
+.layout__row{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.layout__col2 {
+  width: 40%;
+  padding:0 60px;
+}
+
 
 // Fluid container
 //
