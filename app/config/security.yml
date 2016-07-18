@@ -20,7 +20,7 @@ security:
                 use_forward: false
                 check_path: fos_user_security_check
                 failure_path: null
-                default_target_path: /
+                default_target_path: playlist_home
 
             logout:
                 path: fos_user_security_logout
@@ -28,7 +28,7 @@ security:
             anonymous:    true
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/connexion$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/inscription, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ADMIN }

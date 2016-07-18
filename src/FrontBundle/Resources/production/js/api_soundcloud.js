@@ -19,8 +19,15 @@ $(".header__userExperience__search input").keyup(function() {
  * Click on music launch function Search on SoundCloud
  **/
 $("body").on("click", ".header__userExperience__panel li", function(){
-    SoundcloudFind($(this).data("link"));
-    modePlaylist = false;
+  if(onLaunch){
+    $(".footer").animate({
+      "opacity" : 1
+    }, 1500);
+    onLaunch = false;
+  }
+  
+  modePlaylist = false;
+  SoundcloudFind($(this).data("link"));
 });
 
 /**

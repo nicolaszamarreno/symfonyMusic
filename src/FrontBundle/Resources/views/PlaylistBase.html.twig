@@ -36,11 +36,12 @@
                         {% endimage %}
                     </span>
                     <span class="header__userExperience__user__name">
-                        john <strong>DOE</strong>
+
+                        {{ app.user.getFirstname() }} <strong>{{ app.user.getLastname }}</strong>
                     </span>
             </li>
             <li class="header__userExperience__logout">
-                <button class="icon-shut-down"></button>
+                <a href="{{ path('fos_user_security_logout') }}" class="icon-shut-down"></a>
             </li>
         </ul>
     </header>

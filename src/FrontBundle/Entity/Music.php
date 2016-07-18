@@ -24,16 +24,16 @@ class Music
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="artiste", type="string", length=255, nullable=true)
+     * @ORM\Column(name="artist", type="string", length=255, nullable=true)
      */
-    private $artiste;
+    private $artist;
 
     /**
      * @var float
@@ -61,12 +61,18 @@ class Music
      * @ORM\JoinColumn(name="playlist_id", nullable=true, referencedColumnName="id")
      */
     private $playlist;
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->playlist = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -74,51 +80,51 @@ class Music
     }
 
     /**
-     * Set titre
+     * Set title
      *
-     * @param string $titre
+     * @param string $title
      *
      * @return Music
      */
-    public function setTitre($titre)
+    public function setTitle($title)
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get titre
+     * Get title
      *
      * @return string
      */
-    public function getTitre()
+    public function getTitle()
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
-     * Set artiste
+     * Set artist
      *
-     * @param string $artiste
+     * @param string $artist
      *
      * @return Music
      */
-    public function setArtiste($artiste)
+    public function setArtist($artist)
     {
-        $this->artiste = $artiste;
+        $this->artist = $artist;
 
         return $this;
     }
 
     /**
-     * Get artiste
+     * Get artist
      *
      * @return string
      */
-    public function getArtiste()
+    public function getArtist()
     {
-        return $this->artiste;
+        return $this->artist;
     }
 
     /**
@@ -191,13 +197,6 @@ class Music
     public function getGenre()
     {
         return $this->genre;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->playlist = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

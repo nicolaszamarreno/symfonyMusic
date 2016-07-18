@@ -1,6 +1,6 @@
 #Symphonie Music
 
-Composition du Groupe 
+Composition du Groupe 9
 - Lisa
 - Marie
 - Vincent

@@ -2,6 +2,11 @@
 
 namespace FrontBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
+
+use AdminBundle\Entity\Playlist;
+use AdminBundle\Entity\Playlist;
 /**
  * MusicRepository
  *
@@ -10,4 +15,5 @@ namespace FrontBundle\Repository;
  */
 class MusicRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

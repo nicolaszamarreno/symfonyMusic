@@ -10,4 +10,13 @@ namespace AdminBundle\Repository;
  */
 class PlaylistRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllPlaylistUser($idUser) {
+        
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder('p')
+            ->where("p.genre = :id")
+            ->setParameter('id', $idUser);
+
+        return $qb->getQuery()->getResult();
+    }
 }

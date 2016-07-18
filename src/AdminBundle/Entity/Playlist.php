@@ -24,16 +24,16 @@ class Playlist
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_creation", type="date", unique=true)
+     * @ORM\Column(name="date_creat", type="date", unique=true)
      */
-    private $dateCreation;
+    private $dateCreat;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_expiration", type="date")
+     * @ORM\Column(name="date_out", type="date")
      */
-    private $dateExpiration;
+    private $dateOut;
 
     /**
      * @var string
@@ -45,9 +45,9 @@ class Playlist
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255)
      */
-    private $titre;
+    private $title;
 
     /**
      * @var int
@@ -149,13 +149,51 @@ class Playlist
     }
 
     /**
-     * Get dateExpiration
+     * Set dateCreat
+     *
+     * @param \DateTime $dateCreat
+     *
+     * @return Playlist
+     */
+    public function setDateCreat($dateCreat)
+    {
+        $this->dateCreat = $dateCreat;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreat
      *
      * @return \DateTime
      */
-    public function getDateExpiration()
+    public function getDateCreat()
     {
-        return $this->dateExpiration;
+        return $this->dateCreat;
+    }
+
+    /**
+     * Set dateOut
+     *
+     * @param \DateTime $dateOut
+     *
+     * @return Playlist
+     */
+    public function setDateOut($dateOut)
+    {
+        $this->dateOut = $dateOut;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOut
+     *
+     * @return \DateTime
+     */
+    public function getDateOut()
+    {
+        return $this->dateOut;
     }
 
     /**
@@ -183,27 +221,27 @@ class Playlist
     }
 
     /**
-     * Set titre
+     * Set title
      *
-     * @param string $titre
+     * @param string $title
      *
      * @return Playlist
      */
-    public function setTitre($titre)
+    public function setTitle($title)
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
 
     /**
-     * Get titre
+     * Get title
      *
      * @return string
      */
-    public function getTitre()
+    public function getTitle()
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
@@ -223,7 +261,7 @@ class Playlist
     /**
      * Get nbLike
      *
-     * @return int
+     * @return integer
      */
     public function getNbLike()
     {
@@ -247,7 +285,7 @@ class Playlist
     /**
      * Get nbFollow
      *
-     * @return int
+     * @return integer
      */
     public function getNbFollow()
     {
@@ -271,7 +309,7 @@ class Playlist
     /**
      * Get nbMusic
      *
-     * @return int
+     * @return integer
      */
     public function getNbMusic()
     {
@@ -295,7 +333,7 @@ class Playlist
     /**
      * Get statut
      *
-     * @return bool
+     * @return boolean
      */
     public function getStatut()
     {
@@ -319,7 +357,7 @@ class Playlist
     /**
      * Get nbListen
      *
-     * @return int
+     * @return integer
      */
     public function getNbListen()
     {

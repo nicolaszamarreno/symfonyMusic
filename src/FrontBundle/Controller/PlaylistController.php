@@ -12,24 +12,32 @@ class PlaylistController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('FrontBundle:Playlist:Playlist.html.twig');
-    }
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
-    /**
-     * @Route("/list", name="playlist_listing")
-     */
-    public function listAction()
-    {
-        return $this->render('FrontBundle:Playlist:PlaylistList.html.twig', array(
-            "id" => $this->getUser()
+        $em = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
+
+        $publishedPlaylist = $em
+            ->getRepository('AdminBundle:Playlist')
+            ->findBy(
+                array(  "author" => $user,
+                    "statut" => true
+                )
+            )
+        ;
+
+        return $this->render('FrontBundle:Playlist:Playlist.html.twig', array(
+            "publish" => $publishedPlaylist
         ));
     }
 
     /**
-     * @Route("/connexion-false", name="connexion")
+     * @Route("/list/{id}", name="playlist_listing")
      */
-    public function connexionAction()
+    public function listAction()
     {
-        return $this->render('FrontBundle:Connexion:ConnexionPage.html.twig');
+        return $this->render('FrontBundle:Playlist:PlaylistList.html.twig');
     }
 }
