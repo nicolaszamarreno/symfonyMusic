@@ -20,7 +20,9 @@ class PlaylistController extends Controller
      */
     public function listAction()
     {
-        return $this->render('FrontBundle:Playlist:PlaylistList.html.twig');
+        return $this->render('FrontBundle:Playlist:PlaylistList.html.twig', array(
+            "id" => $this->getUser()
+        ));
     }
 
     /**

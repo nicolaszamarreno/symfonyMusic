@@ -28,10 +28,16 @@ change_password:
     flash:
         success: 'Le mot de passe a été modifié'
 registration:
+    firstname: 'Votre Prénom'
+    lastname: 'Votre Nom'
+    username: 'nom utilisateur'
+    password: 'Mot de passe'
+    emailregister: 'Adresse e-mail'
+    passwordrepeat: 'Vérification'
     check_email: 'Un e-mail a été envoyé à l''adresse %email%. Il contient un lien d''activation sur lequel il vous faudra cliquer afin d''activer votre compte.'
     confirmed: 'Félicitations %username%, votre compte est maintenant activé.'
     back: 'Retour à la page d''origine.'
-    submit: 'S'enregistrer'
+    submit: 'enregistrer'
     flash:
         user_created: 'L''utilisateur a été créé avec succès'
     email:

@@ -30,6 +30,16 @@ class User extends BaseUser
      */
     private $image;
 
+    /**
+     * @ORM\Column(name="firstname", type="string", length=255)
+     */
+    protected $firstname;
+
+    /**
+     * @ORM\Column(name="lastname", type="string", length=255)
+     */
+    protected $lastname;
+
 
     public function __construct()
     {
@@ -68,5 +78,53 @@ class User extends BaseUser
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set firstname
+     *
+     * @param string $firstname
+     *
+     * @return User
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get firstname
+     *
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set lastname
+     *
+     * @param string $lastname
+     *
+     * @return User
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    /**
+     * Get lastname
+     *
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
     }
 }
