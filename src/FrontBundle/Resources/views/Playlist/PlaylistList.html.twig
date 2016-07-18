@@ -1,5 +1,5 @@
 {% extends "FrontBundle::PlaylistBase.html.twig" %}
-{% block title %}{{ parent() }} Name Playlist{% endblock %}
+{% block title %}{{ parent() }} {{ describe[0].title }}{% endblock %}
 {% block body %}
 
     <div class="listPlaylist">
@@ -7,24 +7,23 @@
 
             <h1 class="breadcrumbs">
                 <div class="breadcrumbs__title">
-                    Mes playlists Favorites <i class="icon-arrow_right"></i> Poposey
+                    Playlist <i class="icon-arrow_right"></i> {{ describe[0].title }}
                 </div>
                 <div class="breadcrumbs__filet"></div>
             </h1>
-
             <div class="listPlaylist__container">
                 <div class="listPlaylist__container__left">
-                    <a href="" class="button__return"><i class="icon-icon_back"></i> retour</a>
+                    <a href="{{ path('playlist_home') }}" class="button__return"><i class="icon-icon_back"></i> retour</a>
 
                     <div class="listPlaylist__swag">
                         <h3 class="listPlaylist__swag__title">
-                            POPOSEY
+                            {{ describe[0].title }}
                         </h3>
                         <h4 class="listPlaylist__swag__author">
-                            Par MACLY
+                            Par {{ describe[0].author.firstname }} {{ describe[0].author.lastname }}
                         </h4>
                         <ul class="listPlaylist__swag__check">
-                            <li><strong>23</strong> titres</li>
+                            <li><strong>{{ lists|length }}</strong> titres</li>
                             <li>Disponible <strong>5 jours</strong></li>
                         </ul>
 
@@ -39,79 +38,22 @@
 
                 <div class="listPlaylist__container__right">
                     <table class="listPlaylist__listing">
-                        <tr data-label = "https://soundcloud.com/ngusrunsdon/be-real-ft-dej-loaf-explicit" data-play="true" data-time="3">
-                            <td>
-                                <i class="icon-arrow"></i>
-                            </td>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                Be ReaL Ft. Dej Loaf (Explicit)
-                            </td>
-                            <td>
-                                <i class="icon-edit"></i>
-                            </td>
-                        </tr>
-                        <tr data-label = "https://soundcloud.com/hotnewexclusive/meek-mill-heaven-or-hell-ft" data-play="false" data-time="3">
-                            <td>
-                                <i class="icon-arrow"></i>
-                            </td>
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                Meek Mill- Heaven Or Hell Ft Jadakiss, Guordan Banks (DreamChasers 3)
-                            </td>
-                            <td>
-                                <i class="icon-edit"></i>
-                            </td>
-                        </tr>
-                        <tr data-label = "https://soundcloud.com/detoto/detoto-the-buckeye-party-mix" data-play="true" data-time="2">
-                            <td>
-                                <i class="icon-arrow"></i>
-                            </td>
-                            <td>
-                                3
-                            </td>
-                            <td>
-
-                                DeToto - THE Buckeye Party Mix! (2015 Champions Edition)
-                            </td>
-                            <td>
-                                <i class="icon-edit"></i>
-                            </td>
-                        </tr>
-                        <tr data-label = "https://soundcloud.com/itspraddy/ed-sheeran-photograph-acoustic-version" data-play="true" data-time="1">
-                            <td>
-                                <i class="icon-arrow"></i>
-                            </td>
-                            <td>
-                                4
-                            </td>
-                            <td>
-
-                                Ed Sheeran - Photograph (Acoustic Version)
-                            </td>
-                            <td>
-                                <i class="icon-edit"></i>
-                            </td>
-                        </tr>
-                        <tr data-label = "https://soundcloud.com/itspraddy/ed-sheeran-photograph-acoustic-version" data-play="true">
-                            <td>
-                                <i class="icon-arrow"></i>
-                            </td>
-                            <td>
-                                4
-                            </td>
-                            <td>
-
-                                Ed Sheeran - Photograph (Acoustic Version)
-                            </td>
-                            <td>
-                                <i class="icon-edit"></i>
-                            </td>
-                        </tr>
+                        {% for list in lists %}
+                            <tr data-label = "{{ list.link }}" data-play="true" data-time="3">
+                                <td>
+                                    <i class="icon-arrow"></i>
+                                </td>
+                                <td>
+                                    {{ loop.index }}
+                                </td>
+                                <td>
+                                    {{ list.title }}
+                                </td>
+                                <td>
+                                    <i class="icon-edit"></i>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </table>
                 </div>
             </div>

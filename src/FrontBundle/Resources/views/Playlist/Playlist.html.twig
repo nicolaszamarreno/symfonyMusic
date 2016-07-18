@@ -4,52 +4,66 @@
 
     <article class="playlist">
         <div class="container__fluid">
-            <h1 class="title--playlist">
-                <span>Mes playlists en ligne</span>
+            <h1 class="breadcrumbs">
+                <div class="breadcrumbs__title">
+                    Mes playlists publiées
+                </div>
+                <div class="breadcrumbs__filet"></div>
             </h1>
-            <div>
-                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
-                    <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+            <div class="row__flex">
+                {% for publish in publishs %}
+                    {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                    <a href="http://localhost/web/app_dev.php/playlist/{{ publish.id }}" class="playlist__label" style="background:url({{
+                    asset_url }}); background-size:cover">
                         <h3 class="playlist__genre">
-                            Rap US
+                            {{ publish.title }}
                         </h3>
                         <p class="playlist__describe">
-                            <span>23 titres</span>
+                            <span>{{ publish.nbMusic }} titres</span>
                             Disponible 5 jours
                         </p>
-                    </div>
-                {% endimage %}
+                    </a>
+                    {% endimage %}
+                {% endfor %}
             </div>
         </div>
     </article>
 
     <article class="playlist">
         <div class="container__fluid">
-            <h1 class="title--playlist">
-                <span>Mes playlists favorites</span>
-            </h1>
-            <div>
-                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
-                <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
-                    <h3 class="playlist__genre">
-                        Rap US
-                    </h3>
-                    <p class="playlist__describe">
-                        <span>23 titres</span>
-                        Disponible 5 jours
-                    </p>
+            <h1 class="breadcrumbs">
+                <div class="breadcrumbs__title">
+                    Mes playlists en Brouillon
                 </div>
-                {% endimage %}
+                <div class="breadcrumbs__filet"></div>
+            </h1>
+            <div class="row__flex">
+                {% for copy in copys %}
+                    {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                    <a class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                        <h3 class="playlist__genre">
+                            {{ copy.title }}
+                        </h3>
+                        <p class="playlist__describe">
+                            <span>{{ copy.nbMusic }} titres</span>
+                            Disponible 5 jours
+                        </p>
+                    </a>
+                    {% endimage %}
+                {% endfor %}
             </div>
         </div>
     </article>
 
     <article class="playlist">
         <div class="container__fluid">
-            <h1 class="title--playlist">
-                <span>Mes brouillons</span>
+            <h1 class="breadcrumbs">
+                <div class="breadcrumbs__title">
+                    Mes playlists Favorites
+                </div>
+                <div class="breadcrumbs__filet"></div>
             </h1>
-            <div>
+            <div class="row__flex">
                 {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
                 <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
                     <h3 class="playlist__genre">

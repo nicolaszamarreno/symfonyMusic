@@ -9,6 +9,9 @@
     position: relative;
     border-radius:5px;
     cursor: pointer;
+    display: block;
+    margin-right:20px;
+    text-decoration: none;
 
     &:before {
       content:"";
@@ -28,6 +31,7 @@
     opacity: 0.5;
     position: relative;
     z-index: 3;
+    color:$color-menu;
   }
 
   &__describe {

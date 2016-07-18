@@ -22,3 +22,7 @@ Pour faciliter le développement Front-End, on peut lancer un Livereload afin d'
 
 Pour lancer la task Gulp pour l'intégration :  
 `$ gulp production`
+
+##Publiez les assets
+Pour accéder à toute les ressources de l'application en mode dev il faut publier les assets.
+`$ bin/console assets:install web`

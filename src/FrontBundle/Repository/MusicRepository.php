@@ -2,11 +2,6 @@
 
 namespace FrontBundle\Repository;
 
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\QueryBuilder;
-
-use AdminBundle\Entity\Playlist;
-use AdminBundle\Entity\Playlist;
 /**
  * MusicRepository
  *
@@ -15,5 +10,17 @@ use AdminBundle\Entity\Playlist;
  */
 class MusicRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function musicPlaylist($idPlaylist) {
+        $qb = $this
+            ->createQueryBuilder('m')
+            ->innerJoin('m.playlist', 'p')
+            ->where('p.id = :idPlaylist')
+            ->setParameter('idPlaylist', $idPlaylist)
+        ;
 
+        return $qb
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
