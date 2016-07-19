@@ -213,7 +213,7 @@ function frameLooper(){
 var totalSongPlaylist = $(".listPlaylist__listing tr").length;
 var indexSongCurrent;
 
-$(".listPlaylist__listing tr").click(function(){
+$("body").on("click", ".listPlaylist__listing tr", function(){
     modePlaylist = true; // Give Mode;
     indexSongCurrent = $(this).index();
 
@@ -282,10 +282,10 @@ function previousPlaylist(indexCurrent){
 }
 
 function songSelectPlaylist(indexCurrent){
-        $(".listPlaylist__listing tr ").removeClass("song__active");
+        $(".listPlaylist__listing tr").removeClass("song__active");
         $(".listPlaylist__listing tr i").removeClass("icon-pause-button-outline").addClass("icon-arrow");
-        $(".listPlaylist__listing tr ").eq(indexCurrent).addClass("song__active");
-        $(".listPlaylist__listing tr ").eq(indexCurrent).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
+        $(".listPlaylist__listing tr").eq(indexCurrent).addClass("song__active");
+        $(".listPlaylist__listing tr").eq(indexCurrent).children().eq(0).children().removeClass("icon-arrow").addClass('icon-pause-button-outline');
 }
 
 function canPlay(indexCurrent){
@@ -297,7 +297,7 @@ function canPlay(indexCurrent){
     }
 }
 
-$(".listPlaylist__listing tr, #play").click(function(){
+$("body").on("click", ".listPlaylist__listing tr, #play", function(){
     if(onLaunch){
         $(".footer").animate({
            "opacity" : 1

@@ -21,6 +21,7 @@ security:
                 check_path: fos_user_security_check
                 failure_path: null
                 default_target_path: playlist_home
+                always_use_default_target_path: false
 
             logout:
                 path: fos_user_security_logout

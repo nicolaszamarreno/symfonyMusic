@@ -1,0 +1,50 @@
+{% extends "FrontBundle::PlaylistBase.html.twig" %}
+{% block title %}{{ parent() }} Recherche {{ wordSearch|capitalize }}{% endblock %}
+{% block body %}
+
+    <div class="listPlaylist">
+        <div class="container__fluid">
+            <h1 class="breadcrumbs">
+                <div class="breadcrumbs__title">
+                    Recherche<i class="icon-arrow_right"></i> {{ wordSearch|capitalize }}
+                </div>
+                <div class="breadcrumbs__filet"></div>
+            </h1>
+            <h2 class="search__title">Playlists et musiques correspondants à la recherche &#171; {{ wordSearch|capitalize }} &#187; :</h2>
+            <div class="listPlaylist__container">
+                <div class="listPlaylist__container__left">
+                    {% for searchPlaylist in searchPlaylists %}
+                        {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
+                        <a class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                            <h3 class="playlist__genre">
+                                {{ searchPlaylist.title }}
+                            </h3>
+                            <p class="playlist__describe">
+                                <span>{{ searchPlaylist.nbMusic }} titres</span>
+                                Disponible 5 jours
+                            </p>
+                        </a>
+                        {% endimage %}
+                    {% endfor %}
+                </div>
+
+                <div class="listPlaylist__container__right">
+                    <table class="listPlaylist__listing">
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts '@FrontBundle/Resources/public/js/*.js' %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script>
+        search("{{ wordSearch }}", 20, "moduleSearch");
+    </script>
+{% endblock %}

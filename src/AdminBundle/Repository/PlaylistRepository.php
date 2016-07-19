@@ -23,4 +23,18 @@ class PlaylistRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
         ;
     }
+
+    public function searchPlaylist($wordSearch) {
+        $qb = $this
+            ->createQueryBuilder('p')
+            ->where('p.title LIKE :wordSearch')
+            ->andwhere('p.statut = 1')
+            ->setParameter('wordSearch', '%'.$wordSearch.'%')
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

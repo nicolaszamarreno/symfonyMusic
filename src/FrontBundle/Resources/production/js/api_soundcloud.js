@@ -1,4 +1,5 @@
 var musicCurrent; // get Back describe music current for API Search SoundCloud
+var linkServer = "http://localhost/web/app_dev.php/search/";
 
 /**
  * Search on keyup the word in the input
@@ -8,7 +9,7 @@ $(".header__userExperience__search input").keyup(function() {
 
   if(term.length > 0) {
     $(".header__userExperience__panel").show();
-    search(term, 6);
+    search(term, 6, "searchBar");
   } else {
     $(".header__userExperience__panel").empty();
     $(".header__userExperience__panel").hide();
@@ -36,7 +37,7 @@ $("body").on("click", ".header__userExperience__panel li", function(){
  * @param  {int} nbreResult [number of result]
  * @return {[HTML]}
  **/
-function search (termSearch, nbreResult) {
+function search (termSearch, nbreResult, source) {
   SC.initialize({
     client_id: 'c381048a8c48b7a419f2be16c079f8da'
   });
@@ -46,10 +47,22 @@ function search (termSearch, nbreResult) {
     limit : nbreResult
   }, function(tracks) {
     var result = "";
-    for (var i = 0; i < tracks.length; i++) {
-       result += '<li data-link="' + tracks[i].permalink_url + '"><div class="panel__avatar"><img src="' + tracks[i].user.avatar_url + '"></div><div class="panel__title"><strong>' + tracks[i].title + '</strong>' + tracks[i].user.username + '</div></li>';
+    if(source == "searchBar") {
+      for (var i = 0; i < tracks.length; i++) {
+        result += '<li data-link="' + tracks[i].permalink_url + '"><div class="panel__avatar"><img src="' + tracks[i].user.avatar_url + '"></div><div class="panel__title"><strong>' + tracks[i].title + '</strong>' + tracks[i].user.username + '</div></li>';
+      }
+
+        result += '<li class="panel__more"><a href="' + linkServer + termSearch + '">Voir aussi les playlists</a></li>';
+      $(".header__userExperience__panel").empty().html(result);
     }
-    $(".header__userExperience__panel").empty().html(result);
+    else if(source == "moduleSearch") {
+      for (var i = 0; i < tracks.length; i++) {
+        result += '<tr data-label = "' + tracks[i].permalink_url + '" data-play="true"> <td> <i class="icon-arrow"></i> </td><td> 1</td> <td>' +  tracks[i].title + '</td> <td> <i class="icon-edit"></i> </td> </tr>';
+      }
+
+      $(".listPlaylist__listing").html(result);
+    }
+
   });
 }
 
