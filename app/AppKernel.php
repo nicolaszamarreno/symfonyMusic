@@ -34,7 +34,6 @@ class AppKernel extends Kernel
 
             new AdminBundle\AdminBundle(),
             new FrontBundle\FrontBundle(),
-            new AppBundle\AppBundle(),
             new UserBundle\UserBundle(),
         ];
 

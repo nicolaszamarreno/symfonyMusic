@@ -24,14 +24,14 @@ class Playlist
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_creat", type="date", unique=true)
+     * @ORM\Column(name="date_creat", type="date", nullable=true)
      */
     private $dateCreat;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_out", type="date")
+     * @ORM\Column(name="date_out", type="date", nullable=true)
      */
     private $dateOut;
 
@@ -66,7 +66,7 @@ class Playlist
     /**
      * @var int
      *
-     * @ORM\Column(name="nb_music", type="integer")
+     * @ORM\Column(name="nb_music", type="integer", nullable=true)
      */
     private $nbMusic;
 

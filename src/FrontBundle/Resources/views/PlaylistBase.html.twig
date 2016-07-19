@@ -21,7 +21,7 @@
             <strong>S</strong>ymphonie
         </div>
 
-        <a href="" class="header__addPlaylist">creer une playlist</a>
+        <a href="{{ path('playlist_create') }}" class="header__addPlaylist">creer une playlist</a>
 
         <ul class="header__userExperience">
             <li class="header__userExperience__search">
@@ -68,7 +68,7 @@
             <li><a href=""><span class="icon-playlist"></span> Electro</a></li>
             <li><a href=""><span class="icon-playlist"></span> Rock</a></li>
             <li><a href=""><span class="icon-playlist"></span> Divers</a></li>
-            <li><a href=""><span class="icon-add"></span> Nouvelle playlist</a></li>
+            <li><a href=""{{ path('playlist_create') }}""><span class="icon-add"></span> Nouvelle playlist</a></li>
         </ul>
     </nav>
     <section class="wrapper">
