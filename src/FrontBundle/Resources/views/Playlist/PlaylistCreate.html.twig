@@ -1,1 +1,29 @@
+<body>
 {{ form(form) }}
+<div class="button">bonjour</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>
+    function aButtonPressed(){
+        $.ajax({
+            type: "POST",
+            url: '{{path('playlist_update')}}',
+            data: {
+                zoom: "hello"
+            },
+            dataType: "json",
+            success: function(response) {
+                console.log(response);
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        $('.button').on('click', function(){
+
+            aButtonPressed();
+
+        });
+    });
+</script>
+</body>
+

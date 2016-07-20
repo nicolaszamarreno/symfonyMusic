@@ -4,11 +4,12 @@ namespace FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use AdminBundle\Entity\Playlist;
 use AdminBundle\Form\PlaylistType;
-use AdminBundle\Form\AdvertType;
 
 class PlaylistController extends Controller
 {
@@ -104,15 +105,19 @@ class PlaylistController extends Controller
 
     /**
      * @Route("/update-playlist", name="playlist_update")
+     * @Method({"GET", "POST"})
      */
-    public function addMusicPlaylist()
+    public function addMusicPlaylistAction(Request $request)
     {
-        $request = $this->container->get('request');
-        $data1 = $request->query->get('data1');
-        $data2 = $request->query->get('data2');
+        // On récupère la data
+        $data1 = $request->request->get('zoom');
 
-        $response = array("code" => 100, "success" => true);
-        //you can return result as JSON
-        return new Response(json_encode($response));
+        // On vérifie que c'est une requête
+        if ($request->isXMLHttpRequest()) {
+            return new JsonResponse(array("code" => 100, "success" => true, "data" => $data1));
+            // On converti le tableau
+        }
+
+        return new Response('This is not ajax!', 400);
     }
 }
