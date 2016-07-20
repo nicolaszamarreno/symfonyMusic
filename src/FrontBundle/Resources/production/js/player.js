@@ -210,10 +210,11 @@ function frameLooper(){
  ******************
  ******************
  ******************/
-var totalSongPlaylist = $(".listPlaylist__listing tr").length;
+var totalSongPlaylist;
 var indexSongCurrent;
 
 $("body").on("click", ".listPlaylist__listing tr", function(){
+    totalSongPlaylist = $(".listPlaylist__listing tr").length;
     modePlaylist = true; // Give Mode;
     indexSongCurrent = $(this).index();
 
@@ -239,7 +240,7 @@ function nextPlaylist(indexCurrent){
     if(modePlaylist == true){
         var  index = indexCurrent + 1;
         if(canPlay(index) && index <= totalSongPlaylist){
-            var url = $(".listPlaylist__listing tr ").eq(index).attr("data-label");
+            var url = $(".listPlaylist__listing tr").eq(index).attr("data-label");
             indexSongCurrent = index;
             SoundcloudFind(url);
             songSelectPlaylist(index);

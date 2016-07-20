@@ -35,6 +35,11 @@
 
 .button__modal {
   @extend .button;
+  border:none;
+  width: 230px;
+  height: 30px;
+  text-align: center;
+  justify-content: center;
 }
 
 .button__facebook {

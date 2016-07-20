@@ -14,7 +14,7 @@
 
         <form action="{{ path('playlist_create') }}" method="post" class="form">
             {{ form_start(form) }}
-            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            {{ form_widget(form.title, {'attr': {'class': 'modal__form'}}) }}
             {{ form_widget(form.save, {'attr': {'class': 'button__modal'}}) }}
             {{ form_end(form) }}
 

@@ -1,11 +1,13 @@
-$(".header__addPlaylist").on('click', function(){
-    $('.modal, .modal__popin').fadeIn();
+$(".header__addPlaylist").click(function(){
+    $(".modal").fadeIn();
+});
+$(".modal").click(function(){
+    $(".modal").fadeOut();
+});
+$(".modal").children().click(function() {
+    return false;
 });
 
-$(".modal").on('click', function(){
-    $('.modal, .modal__popin').fadeOut();
+$("body").on("click", ".listPlaylist__listing tr td i.icon-edit", function(){
+    return false;
 });
-
-$(".icon-edit").click(function(){
-    alert("bonjour");
-})

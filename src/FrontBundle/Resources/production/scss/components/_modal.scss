@@ -7,14 +7,26 @@
   display: none;
 
   &__popin {
-    padding:30px;
+    width: 40%;
+    padding:30px 20px 30px 20px;
     background:$background;
     transform: translate(-50%, -50%);
     position: absolute;
     top:50%;
     left: 50%;
     text-align: center;
-    display: none;
     z-index: 15;
+  }
+
+  &__title {
+    line-height: 25px;
+  }
+
+  &__form {
+    border-bottom:$color 1px solid !important;
+    width: 220px !important;
+    display: block;
+    text-align: center;
+    margin:25px auto;
   }
 }
