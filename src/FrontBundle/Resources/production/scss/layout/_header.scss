@@ -23,6 +23,7 @@
     position: absolute;
     left: 50%;
     bottom:-30px;
+    cursor: pointer;
     transform: translate(-50%, -50%);
 
     &:before {
@@ -85,8 +86,9 @@
       font-family: gothamLight;
       z-index: 5;
 
-      li {
+      li a{
         cursor: pointer;
+        text-decoration: none;
         display:flex;
         align-items: center;
         width: 100%;

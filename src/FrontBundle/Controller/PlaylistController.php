@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use AdminBundle\Entity\Playlist;
+use FrontBundle\Entity\Music;
 use AdminBundle\Form\PlaylistType;
 
 class PlaylistController extends Controller
@@ -78,12 +79,12 @@ class PlaylistController extends Controller
     /**
      * @Route("/creation-playlist", name="playlist_create")
      */
-    public function createPlaylistAction(Request $request)
+    public function popinPlaylistAction(Request $request)
     {
         $playlist = new Playlist();
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $form   = $this->get('form.factory')->create(PlaylistType::class, $playlist);
+        $form = $this->get('form.factory')->create(PlaylistType::class, $playlist);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -93,12 +94,10 @@ class PlaylistController extends Controller
             $em->persist($playlist);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('notice', 'Votre playlist est bien enregistré');
-
             return $this->redirectToRoute('playlist_listing', array('idPlaylist' => $playlist->getId()));
         }
 
-        return $this->render('FrontBundle:Playlist:PlaylistCreate.html.twig', array(
+        return $this->render('FrontBundle:Playlist:PlaylistPopin.html.twig', array(
             'form' => $form->createView()
         ));
     }
@@ -111,10 +110,29 @@ class PlaylistController extends Controller
     {
         // On récupère la data
         $data1 = $request->request->get('zoom');
+        $em = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
 
         // On vérifie que c'est une requête
         if ($request->isXMLHttpRequest()) {
-            return new JsonResponse(array("code" => 100, "success" => true, "data" => $data1));
+
+            $Playlist = $em
+                        ->getRepository('AdminBundle:Playlist')
+                        ->find(1)
+            ;
+
+            $music = new Music();
+            $music->setTitle("dgdfg - Adele");
+            $music->setArtist("Honl zdfzd");
+            $music->setLink('djfskljf hzbdzj');
+            
+            $music->addPlaylist($Playlist);
+            $em->persist($music);
+
+            $em->flush();
+            return new JsonResponse(array("code" => 100, "success" => true, "data" => $Playlist));
             // On converti le tableau
         }
 

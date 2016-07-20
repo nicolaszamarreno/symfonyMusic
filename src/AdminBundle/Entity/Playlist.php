@@ -38,13 +38,6 @@ class Playlist
     /**
      * @var string
      *
-     * @ORM\Column(name="genre", type="string", length=255)
-     */
-    private $genre;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -73,9 +66,9 @@ class Playlist
     /**
      * @var bool
      *
-     * @ORM\Column(name="statut", type="boolean")
+     * @ORM\Column(name="statut", type="boolean", nullable=true)
      */
-    private $statut;
+    private $statut = 0;
 
     /**
      * @var int
@@ -196,29 +189,6 @@ class Playlist
         return $this->dateOut;
     }
 
-    /**
-     * Set genre
-     *
-     * @param string $genre
-     *
-     * @return Playlist
-     */
-    public function setGenre($genre)
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
-    /**
-     * Get genre
-     *
-     * @return string
-     */
-    public function getGenre()
-    {
-        return $this->genre;
-    }
 
     /**
      * Set title

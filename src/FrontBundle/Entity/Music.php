@@ -57,7 +57,7 @@ class Music
     private $genre;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Playlist", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AdminBundle\Entity\Playlist", cascade={"all"})
      * @ORM\JoinColumn(name="playlist_id", nullable=true, referencedColumnName="id")
      */
     private $playlist;

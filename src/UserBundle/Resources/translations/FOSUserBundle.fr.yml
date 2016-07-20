@@ -28,8 +28,8 @@ change_password:
     flash:
         success: 'Le mot de passe a été modifié'
 registration:
-    firstname: 'Votre Prénom'
-    lastname: 'Votre Nom'
+    firstname: 'Prénom'
+    lastname: 'Nom'
     username: 'nom utilisateur'
     password: 'Mot de passe'
     emailregister: 'Adresse e-mail'

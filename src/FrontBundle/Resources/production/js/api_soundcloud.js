@@ -19,17 +19,17 @@ $(".header__userExperience__search input").keyup(function() {
 /**
  * Click on music launch function Search on SoundCloud
  **/
-$("body").on("click", ".header__userExperience__panel li", function(){
+/*$("body").on("click", ".header__userExperience__panel li", function(){
   if(onLaunch){
     $(".footer").animate({
       "opacity" : 1
     }, 1500);
     onLaunch = false;
   }
-  
+
   modePlaylist = false;
   SoundcloudFind($(this).data("link"));
-});
+});*/
 
 /**
  * Search Word in SoundCloud's BDD
@@ -47,9 +47,10 @@ function search (termSearch, nbreResult, source) {
     limit : nbreResult
   }, function(tracks) {
     var result = "";
+    var compt = 0;
     if(source == "searchBar") {
       for (var i = 0; i < tracks.length; i++) {
-        result += '<li data-link="' + tracks[i].permalink_url + '"><div class="panel__avatar"><img src="' + tracks[i].user.avatar_url + '"></div><div class="panel__title"><strong>' + tracks[i].title + '</strong>' + tracks[i].user.username + '</div></li>';
+        result += '<li data-link="' + tracks[i].permalink_url + '"><a href="' + linkServer + tracks[i].title + '"><div class="panel__avatar"><img src="' + tracks[i].user.avatar_url + '"></div><div class="panel__title"><strong>' + tracks[i].title + '</strong>' + tracks[i].user.username + '</div></a></li>';
       }
 
         result += '<li class="panel__more"><a href="' + linkServer + termSearch + '">Voir aussi les playlists</a></li>';
@@ -57,7 +58,8 @@ function search (termSearch, nbreResult, source) {
     }
     else if(source == "moduleSearch") {
       for (var i = 0; i < tracks.length; i++) {
-        result += '<tr data-label = "' + tracks[i].permalink_url + '" data-play="true"> <td> <i class="icon-arrow"></i> </td><td> 1</td> <td>' +  tracks[i].title + '</td> <td> <i class="icon-edit"></i> </td> </tr>';
+        compt = compt + 1;
+        result += '<tr data-label = "' + tracks[i].permalink_url + '" data-play="true"> <td> <i class="icon-arrow"></i> </td><td>' + compt + '</td> <td>' +  tracks[i].title + '</td> <td> <i class="icon-edit"></i> </td> </tr>';
       }
 
       $(".listPlaylist__listing").html(result);

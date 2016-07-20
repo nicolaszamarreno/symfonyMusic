@@ -11,6 +11,7 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 </head>
 <body class="playlistBackground">
+    {{ render(controller('FrontBundle:Playlist:popinPlaylist')) }}
     <header class="header">
         <div class="header__logo">
             <div class='toggle'>
@@ -21,7 +22,7 @@
             <strong>S</strong>ymphonie
         </div>
 
-        <a href="{{ path('playlist_create') }}" class="header__addPlaylist">creer une playlist</a>
+        <a class="header__addPlaylist">creer une playlist</a>
 
         <ul class="header__userExperience">
             <li class="header__userExperience__search">

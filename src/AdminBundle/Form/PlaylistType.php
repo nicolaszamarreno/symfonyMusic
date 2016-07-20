@@ -19,9 +19,7 @@ class PlaylistType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
-            ->add('genre', TextType::class)
-            ->add('statut', CheckboxType::class, array('required' => false))
-            ->add('Créer ma Playlist',      SubmitType::class)
+            ->add('save',      SubmitType::class)
         ;
     }
     

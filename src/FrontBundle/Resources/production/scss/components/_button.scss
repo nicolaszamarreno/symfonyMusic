@@ -33,6 +33,10 @@
 
 }
 
+.button__modal {
+  @extend .button;
+}
+
 .button__facebook {
   text-transform: uppercase;
   color:#FFFFFF;
