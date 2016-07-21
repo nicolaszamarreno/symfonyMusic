@@ -177,15 +177,16 @@ class PlaylistController extends Controller
                 ->getRepository('AdminBundle:Playlist')
                 ->find($nbPlaylist)
             ;
-            //$date = new \DateTime();
-            $Playlist->setDateCreation(new \DateTime());
+            $date = new \DateTime();
+            $Playlist->setDateCreation($date);
+            $Playlist->setTitle("Ca ne marche pas");
             //$Playlist->setDateExpiration($date->add(new \DateInterval('P7D')));
 
             //$em->persist($Playlist);
             $em->flush();
 
-            return new JsonResponse(array("code" => 100, "success" => true, "data" => $Playlist->getDateCreation(),
-                "data2" => $nbPlaylist));
+            return new JsonResponse(array("code" => 100, "success" => true,
+                "data2" => $Playlist->getTitggitle()));
             // On converti le tableau
         }
 
