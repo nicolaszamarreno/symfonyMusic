@@ -26,23 +26,37 @@ class PlaylistController extends Controller
             ->getManager()
         ;
 
-        $publishedPlaylist = $em
+        $publishedPlaylist = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('FrontBundle:Music')
+            ->dasboardPlaylist($user, 1)
+        ;
+
+        $copyPlaylist = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('FrontBundle:Music')
+            ->dasboardPlaylist($user, 0)
+        ;
+
+/*        $publishedPlaylist = $em
             ->getRepository('AdminBundle:Playlist')
             ->findBy(
                 array(  "author" => $user,
                         "statut" => true
                 )
             )
-        ;
+        ;*/
 
-        $copyPlaylist = $em
+/*        $copyPlaylist = $em
             ->getRepository('AdminBundle:Playlist')
             ->findBy(
                 array(  "author" => $user,
                         "statut" => false
                 )
             )
-        ;
+        ;*/
 
         return $this->render('FrontBundle:Playlist:Playlist.html.twig', array(
             "publishs"   => $publishedPlaylist,
@@ -109,7 +123,10 @@ class PlaylistController extends Controller
     public function addMusicPlaylistAction(Request $request)
     {
         // On récupère la data
-        $data1 = $request->request->get('zoom');
+        $link = $request->request->get('link');
+        $title = $request->request->get('titleSong');
+        $nbPlaylist = $request->request->get('nbPlaylist');
+        
         $em = $this
             ->getDoctrine()
             ->getManager()
@@ -120,19 +137,19 @@ class PlaylistController extends Controller
 
             $Playlist = $em
                         ->getRepository('AdminBundle:Playlist')
-                        ->find(1)
+                        ->find($nbPlaylist)
             ;
-
+            echo $title;
             $music = new Music();
-            $music->setTitle("dgdfg - Adele");
-            $music->setArtist("Honl zdfzd");
-            $music->setLink('djfskljf hzbdzj');
+            $music->setTitle($title);
+            $music->setLink($link);
             
             $music->addPlaylist($Playlist);
             $em->persist($music);
 
             $em->flush();
-            return new JsonResponse(array("code" => 100, "success" => true, "data" => $Playlist));
+
+            return new JsonResponse(array("code" => 100, "success" => true, "data" => $title));
             // On converti le tableau
         }
 

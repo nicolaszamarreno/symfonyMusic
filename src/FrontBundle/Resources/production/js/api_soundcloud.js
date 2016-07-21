@@ -53,7 +53,8 @@ function search (termSearch, nbreResult, source) {
         result += '<li data-link="' + tracks[i].permalink_url + '"><a href="' + linkServer + tracks[i].title + '"><div class="panel__avatar"><img src="' + tracks[i].user.avatar_url + '"></div><div class="panel__title"><strong>' + tracks[i].title + '</strong>' + tracks[i].user.username + '</div></a></li>';
       }
 
-        result += '<li class="panel__more"><a href="' + linkServer + termSearch + '">Voir aussi les playlists</a></li>';
+        result += '<li><a class="panel__more" href="' + linkServer + termSearch + '"><i class="icon-arrow_right"></i>Voir' +
+    ' aussi les playlists</a></li>';
       $(".header__userExperience__panel").empty().html(result);
     }
     else if(source == "moduleSearch") {

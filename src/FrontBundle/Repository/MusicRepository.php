@@ -23,4 +23,19 @@ class MusicRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
         ;
     }
+
+    public function dasboardPlaylist($idUser, $status) {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery("
+                                    SELECT COUNT(m) AS nb, p.title, u.username, p.id
+                                    FROM FrontBundle:Music m
+                                    INNER JOIN m.playlist p
+                                    INNER JOIN p.author u
+                                    WHERE u.username = '{$idUser}'
+                                    AND p.statut = '{$status}'
+                                    GROUP BY p.id
+                                 ");
+
+        return $query->getResult();
+    }
 }

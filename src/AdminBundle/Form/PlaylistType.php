@@ -19,7 +19,7 @@ class PlaylistType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
-            ->add('save',      SubmitType::class)
+            ->add('validez',      SubmitType::class)
         ;
     }
     

@@ -1,25 +1,24 @@
-<div class="modal">
-    <div class="modal__popin">
-        <h1 class="breadcrumbs">
-            <div class="breadcrumbs__title">
-                Création de playlist
-            </div>
-            <div class="breadcrumbs__filet"></div>
-        </h1>
+<div class="modal__popin">
+    <h1 class="breadcrumbs">
+        <div class="breadcrumbs__title">
+            Création de playlist
+        </div>
+        <div class="breadcrumbs__filet"></div>
+    </h1>
 
-        <h4 class="modal__title">
-            Super ! une nouvelle playlist !<br/>
-            Pour finir, donnez-lui un petit nom :
-        </h4>
+    <h4 class="modal__title">
+        Super ! une nouvelle playlist !<br/>
+        Pour finir, donnez-lui un petit nom :
+    </h4>
 
-        <form action="{{ path('playlist_create') }}" method="post" class="form">
-            {{ form_start(form) }}
-            {{ form_widget(form.title, {'attr': {'class': 'modal__form'}}) }}
-            {{ form_widget(form.save, {'attr': {'class': 'button__modal'}}) }}
-            {{ form_end(form) }}
+    <form action="{{ path('playlist_create') }}" method="post" class="form">
+        {{ form_start(form) }}
+        {{ form_widget(form.title, {'attr': {'class': 'modal__form'}}) }}
+        {{ form_widget(form.validez, {'attr': {'class': 'button__modal'}}) }}
+        {{ form_end(form) }}
 
-            {{ form_errors(form) }}
-        </form>
+        {{ form_errors(form) }}
+    </form>
 
-    </div>
 </div>
+<div class="modal"></div>

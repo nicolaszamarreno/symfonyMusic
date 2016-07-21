@@ -1,7 +1,6 @@
 {% extends "FrontBundle::PlaylistBase.html.twig" %}
 {% block title %}{{ parent() }} Vos playlists{% endblock %}
 {% block body %}
-
     <article class="playlist">
         <div class="container__fluid">
             <h1 class="breadcrumbs">
@@ -19,7 +18,7 @@
                             {{ publish.title }}
                         </h3>
                         <p class="playlist__describe">
-                            <span>{{ publish.nbMusic }} titres</span>
+                            <span>{{ publish.nb }} titres</span>
                             Disponible 5 jours
                         </p>
                     </a>
@@ -28,7 +27,6 @@
             </div>
         </div>
     </article>
-
     <article class="playlist">
         <div class="container__fluid">
             <h1 class="breadcrumbs">
@@ -40,12 +38,13 @@
             <div class="row__flex">
                 {% for copy in copys %}
                     {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
-                    <a class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
+                    <a href="http://localhost/web/app_dev.php/playlist/{{ copy.id }}" class="playlist__label"
+                       style="background:url({{ asset_url }}); background-size:cover">
                         <h3 class="playlist__genre">
                             {{ copy.title }}
                         </h3>
                         <p class="playlist__describe">
-                            <span>{{ copy.nbMusic }} titres</span>
+                            <span>{{ copy.nb }} titres</span>
                             Disponible 5 jours
                         </p>
                     </a>
@@ -63,19 +62,6 @@
                 </div>
                 <div class="breadcrumbs__filet"></div>
             </h1>
-            <div class="row__flex">
-                {% image '@FrontBundle/Resources/public/images/rap.jpg' %}
-                <div class="playlist__label" style="background:url({{ asset_url }}); background-size:cover">
-                    <h3 class="playlist__genre">
-                        Rap US
-                    </h3>
-                    <p class="playlist__describe">
-                        <span>23 titres</span>
-                        Disponible 5 jours
-                    </p>
-                </div>
-                {% endimage %}
-            </div>
         </div>
     </article>
 
