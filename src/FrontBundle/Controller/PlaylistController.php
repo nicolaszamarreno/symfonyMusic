@@ -139,7 +139,7 @@ class PlaylistController extends Controller
                         ->getRepository('AdminBundle:Playlist')
                         ->find($nbPlaylist)
             ;
-            echo $title;
+
             $music = new Music();
             $music->setTitle($title);
             $music->setLink($link);
@@ -150,6 +150,42 @@ class PlaylistController extends Controller
             $em->flush();
 
             return new JsonResponse(array("code" => 100, "success" => true, "data" => $title));
+            // On converti le tableau
+        }
+
+        return new Response('This is not ajax!', 400);
+    }
+
+    /**
+     * @Route("/publish-playlist", name="playlist_publish")
+     * @Method({"GET", "POST"})
+     */
+    public function publishPlaylistAction(Request $request)
+    {
+        // On récupère la data
+        $nbPlaylist = $request->request->get('nbPlaylist');
+
+        $em = $this
+            ->getDoctrine()
+            ->getManager()
+        ;
+
+        // On vérifie que c'est une requête
+        if ($request->isXMLHttpRequest()) {
+
+            $Playlist = $em
+                ->getRepository('AdminBundle:Playlist')
+                ->find($nbPlaylist)
+            ;
+            //$date = new \DateTime();
+            $Playlist->setDateCreation(new \DateTime());
+            //$Playlist->setDateExpiration($date->add(new \DateInterval('P7D')));
+
+            //$em->persist($Playlist);
+            $em->flush();
+
+            return new JsonResponse(array("code" => 100, "success" => true, "data" => $Playlist->getDateCreation(),
+                "data2" => $nbPlaylist));
             // On converti le tableau
         }
 

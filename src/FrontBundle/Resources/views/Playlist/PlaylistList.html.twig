@@ -28,11 +28,12 @@
                         </ul>
 
                         <div class="listPlaylist__swag__like">
-                            <i class="icon-heart"></i> 79
+                            <i class="icon-heart"></i> 00
                             <p>Ajoutée à vos favoris !</p>
                         </div>
 
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ app.request.uri }}" class="button__share">PARTAGEZ</a>
+                        <a class="button__publish">Publiez</a>
                     </div>
                 </div>
 
@@ -66,5 +67,24 @@
     {{ parent() }}
     {% javascripts '@FrontBundle/Resources/public/js/*.js' %}
     <script src="{{ asset_url }}"></script>
+    <script>
+        $(".button__publish").click(function(){
+            var url = window.location.href;
+            n = 1; //
+            length = url.length;
+            result = url.substring(length -n, length);
+            $.ajax({
+                type: 'POST',
+                url: '{{path('playlist_publish')}}',
+                data: {
+                    nbPlaylist: result
+                },
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        })
+    </script>
     {% endjavascripts %}
 {% endblock %}
